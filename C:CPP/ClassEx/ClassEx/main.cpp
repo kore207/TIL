@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "tabtenn0.hpp"
+#include "tabtenn1.hpp"
 
 using namespace std;
 
