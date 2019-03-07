@@ -37,9 +37,13 @@
   * dpkg --get-selections genisoimage
   * genisoimage -r -J -o 이름.iso 위치
 
+---
 
+### 네트워크 관련 필수 개념
 
-
+* TCP/IP :컴퓨터끼리 네트워크 상으로 의사소통을 하는 프로토콜 중 가장 널리 사용되는 프로토콜의 한 종류
+* 호스트 이름 : 각각의 컴퓨터에 지정된 이름
+* 도메인 이름: naver.com 과 같은 형식
 
 
 
