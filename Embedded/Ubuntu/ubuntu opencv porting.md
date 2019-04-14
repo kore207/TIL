@@ -121,3 +121,8 @@ http://answers.opencv.org/question/70750/does-opencv3-support-qt4/
 \- softfp인지 hardfp인지 알아보시고 적절하게 넣어주면 됩니다.
 
 [출처] [크로스컴파일 관련하여 문의드립니다. (OpenCV KOREA 대한민국 최고의 컴퓨터비젼 커뮤니티)](https://cafe.naver.com/opencv/49640) |작성자 [서울박종덕](https://cafe.naver.com/opencv.cafe?iframe_url=/CafeMemberNetworkView.nhn%3Fm=view%26memberid=pjd86)
+
+--- 
+ubuntu + qt + opencv porting 참조 
+
+>>> https://corehunter.tistory.com/34
