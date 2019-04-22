@@ -12,4 +12,4 @@
 ### ETC
 
 * 삼항 연산자 토글 
-  *``` int toggle = 1; … toggle = (toggle == 1) ? 0 : 1;
+  *int toggle = 1; … toggle = (toggle == 1) ? 0 : 1;
