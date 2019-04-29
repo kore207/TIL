@@ -85,3 +85,39 @@ for(int i=0; itd !=itd.end; ++itd, ++i){ //i를 쓰진 않지만 몇번짼지 �
 * img.channels() : 채널 수
 * img.rows() : 열의 수
 * img.step() : 행의 바이트 수
+
+---
+
+#### 이미지 저장
+
+* imwrite("name.jpg/bmp/tif",img) ;
+
+#### 비디오 저장 
+
+* opencv_imgcodecs300d.dll , ffmpeg300_64.dll 이 있어야 영상 재생및 처리 가능
+
+``` c
+//file load
+VideoCapture capture(".\\rhinos.avi") ;
+Mat frame ; //한 프레임씩 받기 위함
+
+//Set properties
+int askFileTypeBox = 0 ; //-1 is show box of codec;
+int Color =1;
+Size S= Size((int)capture.get(CV_CAP_PROP_FRAME_WIDTH), (int) capture.get(CV_CAP_PROP_FRAME_HEGITH)) ;
+VideoWriter outVideo ;
+outVideo.open(".\\outVideo.avi",askFileTypeBox, capture,get(CV_CAP_PROP_FPS),S,Color) ;
+//저장할 파일 이름 , 코덱박스 선택 (-1로 하면 선택가능),크기, 칼라/흑백 
+
+while(1)
+{
+    capture >> frame ;
+    if(frame.empty())
+        break ;
+    outVideo << frame;
+    imshow("w",frame) ;
+}
+```
+
+
+
