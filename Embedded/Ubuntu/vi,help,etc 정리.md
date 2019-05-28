@@ -57,7 +57,9 @@ echo $PKG_CONFIG_PATH
 이런식으로 직접 등록하면 인식한다.
 
 ​    
+### Library 경로 설정
 
+* sudo ldconfig -v로 현재의 경로를 볼 수 있다.
 ​    
 
 ​    
