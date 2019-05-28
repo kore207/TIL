@@ -46,6 +46,7 @@
 * 도메인 이름: naver.com 과 같은 형식
 
 
+### cmake 관련
 cmake or cmake-gui 에서 특정 패키지를 찾지 못할때 
 ​    
 export PKG_CONFIG_PATH=/home/me/usr/libxml/lib/pkgconfig
@@ -54,6 +55,7 @@ export PKG_CONFIG_PATH=/home/me/usr/libxml/lib/pkgconfig
 echo $PKG_CONFIG_PATH
 
 이런식으로 직접 등록하면 인식한다.
+
 ​    
 
 ​    
