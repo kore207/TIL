@@ -61,7 +61,9 @@ echo $PKG_CONFIG_PATH
 
 * sudo ldconfig -v로 현재의 경로를 볼 수 있다.
 ​    
-
+* ldconfig -v 2>/dev/null |grep -v ^$'\t'
+# ldconfig is a tool for configure linker search path
+# This command will tell you where it is searching for the necessay libs.
 ​    
 
 ​    
