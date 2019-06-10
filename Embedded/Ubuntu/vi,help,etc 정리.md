@@ -61,7 +61,12 @@ echo $PKG_CONFIG_PATH
 
 * sudo ldconfig -v로 현재의 경로를 볼 수 있다.
 ​    
+* ldconfig -v 2>/dev/null |grep -v ^$'\t'
+* #ldconfig is a tool for configure linker search path
+* #This command will tell you where it is searching for the necessay libs.
 
+# 크로스 컴파일 예제로 좋은 질문 
+* https://stackoverflow.com/questions/44558623/opencv-crosscompile-with-ffmpeg-and-other-3rdparty-for-arm-board
 ​    
 
 ​    
