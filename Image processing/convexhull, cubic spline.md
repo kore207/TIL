@@ -1,5 +1,5 @@
 Convex : 꺾이는 점 or 최외곽의 점을 추출
-
+* convex에서 뜬금없는 점 ex (0,0)같은게 있으면 전부 흐트러지게된다 
 ```c
 int MakeConvex(PointF *conPoint, PointF *srcPoint)
 {
