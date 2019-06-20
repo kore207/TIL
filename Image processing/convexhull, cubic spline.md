@@ -98,6 +98,9 @@ void CubicSpline(int iEa, float *x, float *y, int oEa, float *xs, float *ys)
 ``` c 
 int floodFill(InputOutputArray image, Point seedPoint, Scalar newVal, Rect* rect=0, Scalar loDiff=Scalar(), Scalar upDiff=Scalar(), int flags=4 )
 ```
+* seedpoint 에서 시작하고 추후 선택된 영역은 newVal 값으로 색칠 한다. 특정 픽셀값이 이미 색칠되어 있는 이웃 픽셀의 밝기값에서 lo_diff 를 뺀 값보다 같거나 크고 up_Diff를 더한 값보다는 같거나 작을 경우, 이 픽셀을 newVal 값으로 색칠한다. 
+* 인자에 CV_FLOODFILL_FIXED_RANGE 값이 포함 되면 인접한 이웃픽셀과 값을 비교하지 않고 seed 의 픽셀과 비교한다. 
+
 Parameters:	
 image – Input/output 1- or 3-channel, 8-bit, or floating-point image. It is modified by the function unless the FLOODFILL_MASK_ONLY flag is set in the second variant of the function. See the details below.
 
