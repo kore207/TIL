@@ -44,3 +44,5 @@ Mat temp = Mat( H, W, CV_8UC1 );
 temp.data = buffer;
 와 같은 형태로 변환 가능
 출처: https://jangjy.tistory.com/143 [살다보니..]
+
+windowresize("name",height, weight) opencv window 창 크기 

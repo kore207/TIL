@@ -46,13 +46,27 @@
 * 도메인 이름: naver.com 과 같은 형식
 
 
+### cmake 관련
+cmake or cmake-gui 에서 특정 패키지를 찾지 못할때 
+​    
+export PKG_CONFIG_PATH=/home/me/usr/libxml/lib/pkgconfig
+
+제대로 설정되었는지 확인하려면
+echo $PKG_CONFIG_PATH
+
+이런식으로 직접 등록하면 인식한다.
 
 ​    
+### Library 경로 설정
 
+* sudo ldconfig -v로 현재의 경로를 볼 수 있다.
 ​    
+* ldconfig -v 2>/dev/null |grep -v ^$'\t'
+* #ldconfig is a tool for configure linker search path
+* #This command will tell you where it is searching for the necessay libs.
 
-​    
-
+# 크로스 컴파일 예제로 좋은 질문 
+* https://stackoverflow.com/questions/44558623/opencv-crosscompile-with-ffmpeg-and-other-3rdparty-for-arm-board
 ​    
 
 ​    
