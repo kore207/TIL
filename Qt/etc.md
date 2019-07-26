@@ -312,3 +312,9 @@ CONFIG(release) {
 
   이때 꼭 함수가 끝나고 처리되지 않게 하련면 qApp->processEvents(); 해주면 된다.
 
+
+### q Embedded screenshot
+```c
+    QScreen *screen = QGuiApplication::primaryScreen() ;
+    QPixmap *map = new QPixmap(screen->grabWindow(0)) ;
+    bool result = map->save("/root/sshot.bmp","BMP") ;
