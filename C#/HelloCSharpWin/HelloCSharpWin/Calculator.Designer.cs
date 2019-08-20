@@ -28,91 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.HelloLable = new System.Windows.Forms.Label();
-            this.Sum1 = new System.Windows.Forms.TextBox();
-            this.Sum2 = new System.Windows.Forms.TextBox();
-            this.SumNumbers = new System.Windows.Forms.Button();
-            this.SumResult = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.NumScreen = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // HelloLable
+            // button1
             // 
-            this.HelloLable.AutoSize = true;
-            this.HelloLable.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.HelloLable.Location = new System.Drawing.Point(29, 34);
-            this.HelloLable.Name = "HelloLable";
-            this.HelloLable.Size = new System.Drawing.Size(105, 12);
-            this.HelloLable.TabIndex = 0;
-            this.HelloLable.Text = "여기를 클릭하세요";
-            this.HelloLable.Click += new System.EventHandler(this.HelloLable_Click);
+            this.button1.Location = new System.Drawing.Point(66, 90);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(52, 47);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Sum1
+            // button2
             // 
-            this.Sum1.Location = new System.Drawing.Point(15, 72);
-            this.Sum1.Name = "Sum1";
-            this.Sum1.Size = new System.Drawing.Size(100, 21);
-            this.Sum1.TabIndex = 1;
+            this.button2.Location = new System.Drawing.Point(133, 90);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(52, 47);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // Sum2
+            // NumScreen
             // 
-            this.Sum2.Location = new System.Drawing.Point(137, 72);
-            this.Sum2.Name = "Sum2";
-            this.Sum2.Size = new System.Drawing.Size(100, 21);
-            this.Sum2.TabIndex = 2;
+            this.NumScreen.BackColor = System.Drawing.Color.White;
+            this.NumScreen.Location = new System.Drawing.Point(25, 21);
+            this.NumScreen.Name = "NumScreen";
+            this.NumScreen.Size = new System.Drawing.Size(390, 47);
+            this.NumScreen.TabIndex = 2;
+            this.NumScreen.Text = "0";
+            this.NumScreen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // SumNumbers
+            // button3
             // 
-            this.SumNumbers.Location = new System.Drawing.Point(243, 72);
-            this.SumNumbers.Name = "SumNumbers";
-            this.SumNumbers.Size = new System.Drawing.Size(75, 23);
-            this.SumNumbers.TabIndex = 3;
-            this.SumNumbers.Text = "=";
-            this.SumNumbers.UseVisualStyleBackColor = true;
-            this.SumNumbers.Click += new System.EventHandler(this.SumNumbers_Click);
-            // 
-            // SumResult
-            // 
-            this.SumResult.Location = new System.Drawing.Point(325, 73);
-            this.SumResult.Name = "SumResult";
-            this.SumResult.Size = new System.Drawing.Size(100, 21);
-            this.SumResult.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(121, 77);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(11, 12);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "+";
+            this.button3.Location = new System.Drawing.Point(363, 90);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(52, 47);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "+";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(455, 377);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.SumResult);
-            this.Controls.Add(this.SumNumbers);
-            this.Controls.Add(this.Sum2);
-            this.Controls.Add(this.Sum1);
-            this.Controls.Add(this.HelloLable);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.NumScreen);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Name = "Calculator";
             this.Text = "Form1";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label HelloLable;
-        private System.Windows.Forms.TextBox Sum1;
-        private System.Windows.Forms.TextBox Sum2;
-        private System.Windows.Forms.Button SumNumbers;
-        private System.Windows.Forms.TextBox SumResult;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label NumScreen;
+        private System.Windows.Forms.Button button3;
     }
 }
 
