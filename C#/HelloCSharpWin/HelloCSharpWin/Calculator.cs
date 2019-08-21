@@ -9,14 +9,17 @@ using System.Windows.Forms;
 
 namespace HelloCSharpWin
 {
+    public enum Operators { Add, Multi, Sub, Div }
+    
     public partial class Calculator : Form
     {
         public int Result = 0;
         public bool isNewNum = true;
+        public Operators Opt = Operators.Add;
 
         public Calculator()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }              
 
         public int Add(int number1, int number2)
@@ -37,9 +40,10 @@ namespace HelloCSharpWin
             return sub;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {               
-            SetNum("1");
+        private void button1_Click(object sender, EventArgs e) //object 는 범용적인 변수 (클래스를 포함한 모든 변수를 받을수있음)
+        {  
+            Button numButton = (Button)sender;
+            SetNum(numButton.Text) ;
         }
 
         public void SetNum(string num)
@@ -58,13 +62,8 @@ namespace HelloCSharpWin
                 NumScreen.Text = NumScreen.Text + num;
             }
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            SetNum("2");
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+       
+        private void button3_Click(object sender, EventArgs e) //+
         {
             //첫번째 변수 = 0;
             //숫자입력
@@ -72,12 +71,26 @@ namespace HelloCSharpWin
 
             //case2 더하기 버튼 - 숫자완성, 변수와 숫자 합, 결과를 변수에 다시 저장 
 
-            int num = int.Parse(NumScreen.Text);
-            Result += num;
+            //int num = int.Parse(NumScreen.Text);
+            //Result += num;
+            
+            if (isNewNum == false) //중복입력 방지 
+            {
+                int num = int.Parse(NumScreen.Text);
+                if (Opt == Operators.Add)
+                    Result += num;
+                else if (Opt == Operators.Sub)
+                    Result -= num;
 
-            NumScreen.Text = Result.ToString();
-            isNewNum = true;
+                NumScreen.Text = Result.ToString();
+                isNewNum = true;
+            }
 
-        }
+            Button optButton = (Button)sender;
+            if (optButton.Text == "+")
+                Opt = Operators.Add;
+            else if (optButton.Text == "-")
+                Opt = Operators.Sub;
+        }      
     }
 }

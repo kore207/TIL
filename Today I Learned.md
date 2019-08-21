@@ -17,3 +17,10 @@
 
 ### Link
 * https://story.pxd.co.kr/641
+
+
+
+### Switch
+
+* switch문보다 배열 component를 활용하면 확장성이 좋다
+* 규칙이 없으면 규칙을 만들어서 적용하자
