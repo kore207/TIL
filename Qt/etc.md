@@ -318,3 +318,7 @@ CONFIG(release) {
     QScreen *screen = QGuiApplication::primaryScreen() ;
     QPixmap *map = new QPixmap(screen->grabWindow(0)) ;
     bool result = map->save("/root/sshot.bmp","BMP") ;
+    
+### QWidget
+> https://stackoverflow.com/questions/40241527/qpushbutton-to-open-qwidget
+* 버튼을 눌러서 콤보박스 형식으로 위젯을 띄우기 위해 버튼이벤트 내부에서 Widget을 호출하면 함수가 종료하는 순간 소멸되기 때문에 안된다.
