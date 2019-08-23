@@ -1,0 +1,9 @@
+C:\Users\K\source\repos\AnimalShelter\AnimalShelter\obj\Debug\AnimalShelter.csprojAssemblyReference.cache
+C:\Users\K\source\repos\AnimalShelter\AnimalShelter\obj\Debug\AnimalShelter.Form1.resources
+C:\Users\K\source\repos\AnimalShelter\AnimalShelter\obj\Debug\AnimalShelter.Properties.Resources.resources
+C:\Users\K\source\repos\AnimalShelter\AnimalShelter\obj\Debug\AnimalShelter.csproj.GenerateResource.cache
+C:\Users\K\source\repos\AnimalShelter\AnimalShelter\obj\Debug\AnimalShelter.csproj.CoreCompileInputs.cache
+C:\Users\K\source\repos\AnimalShelter\AnimalShelter\bin\Debug\AnimalShelter.exe
+C:\Users\K\source\repos\AnimalShelter\AnimalShelter\bin\Debug\AnimalShelter.pdb
+C:\Users\K\source\repos\AnimalShelter\AnimalShelter\obj\Debug\AnimalShelter.exe
+C:\Users\K\source\repos\AnimalShelter\AnimalShelter\obj\Debug\AnimalShelter.pdb
