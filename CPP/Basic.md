@@ -22,11 +22,22 @@
   
 ### 힙과 스택
 ```C
+{
    AStruct temp ;
     memset(&temp, 0, sizeof(AStruct)) ;
     memcpy(&temp,data, sizeof(AStruct)) ;
     
     return temp ; //스택에 메모리를 저장하여 다른곳에서 스택공간을 덮어버리면 다운되는 문제가 있다 .
+}
+
+OmaStruct* ByteToStruct(QByteArray data)
+{
+    OmaStruct *temp =(OmaStruct*)malloc(sizeof(OmaStruct));
+    memset(temp, 0, sizeof(OmaStruct)) ;
+    memcpy(temp,data, sizeof(OmaStruct)) ;
+    
+    return temp ;
+}//다음과 같이 포인터로 넘겨준다
 ```
 
 
