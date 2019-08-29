@@ -19,4 +19,14 @@
 * 혹은 #pragma once
 
   * 경고 무시 ( #pragma warning (disable:코드번호))
+  
+### 힙과 스택
+```C
+   AStruct temp ;
+    memset(&temp, 0, sizeof(AStruct)) ;
+    memcpy(&temp,data, sizeof(AStruct)) ;
+    
+    return temp ; //스택에 메모리를 저장하여 다른곳에서 스택공간을 덮어버리면 다운되는 문제가 있다 .
+```
+
 
