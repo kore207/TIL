@@ -38,6 +38,15 @@ OmaStruct* ByteToStruct(QByteArray data)
     
     return temp ;
 }//다음과 같이 포인터로 넘겨준다
+
+
+{
+   static AStruct temp ; //static 을 추가해준다 .
+    memset(&temp, 0, sizeof(AStruct)) ;
+    memcpy(&temp,data, sizeof(AStruct)) ;
+    
+    return temp ; 
+}
 ```
 
 
