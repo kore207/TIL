@@ -48,5 +48,6 @@ OmaStruct* ByteToStruct(QByteArray data)
     return temp ; 
 }
 ```
-
+### 부모 의존성 고찰
+((MainWindow *)this->parent())->mousePressEvent(event); 
 
