@@ -40,3 +40,9 @@ bool Dialog::eventFilter(Qobject, QEvent* event)
 
 * 참조 :  https://mydevnote.tistory.com/216 
 * 참조2:  https://www.qtcentre.org/threads/50090-QApplication-handle-all-event-why-does-not-include-QKeyEvent 
+
+
+
+
+### show animation effect
+QPropertianimation *animation 은 전역으로 선언 되어야함 
