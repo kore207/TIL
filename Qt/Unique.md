@@ -46,3 +46,12 @@ bool Dialog::eventFilter(Qobject, QEvent* event)
 
 ### show animation effect
 QPropertianimation *animation 은 전역으로 선언 되어야함 
+
+
+
+### 생성자 매개변수 전달
+
+*  https://stackoverflow.com/questions/43671301/adding-parameters-to-q-object-constructor 
+
+  
+
