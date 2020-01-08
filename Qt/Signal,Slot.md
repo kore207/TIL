@@ -28,3 +28,45 @@ void MainWindow::timer_timeout()
     t.setText(actual_text_.mid(pos_).append(actual_text_.left(pos_)));
 }
 ```
+
+1. SIGNAL만들기
+
+SIGNAL을 만들려면 class의  signals한정자 안에 SIGNAL을 선언하면 됩니다.
+
+| 12   | signals:void IamSignals(); | [cs](http://colorscripter.com/info#e) |
+| ---- | -------------------------- | ------------------------------------- |
+|      |                            |                                       |
+
+만든 SIGNAL은 따로 구현은 안해도 됩니다.
+
+2. SLOT만들기
+
+| 12   | private slots:void IamSlots(); | [cs](http://colorscripter.com/info#e) |
+| ---- | ------------------------------ | ------------------------------------- |
+|      |                                |                                       |
+
+slot도 똑같은 방법으로 만들어주면 됩니다.
+
+그러나 SLOT은 구현을 해야합니다.
+
+| 123  | void MainWindow :: IamSlots(){qDebug()<< "슬롯 실행";} | [cs](http://colorscripter.com/info#e) |
+| ---- | ------------------------------------------------------ | ------------------------------------- |
+|      |                                                        |                                       |
+
+구현은 함수를 구현하는 식으로 똑같이 하면 됩니다.
+
+------
+
+3. SIGNAL과 SLOT연결하기 (connect함수)
+
+QMetaObject::Connection QObject::connect(const QObject * sender, const char * signal, const QObject * receiver, const char * method, Qt::ConnectionType type = Qt::AutoConnection) [static]
+
+connect( SIGNAL이 발생하는 곳 , 발생SIGNAL , SLOT이 발생하는 곳, 발생SLOT)
+
+이런식으로 사용하게 됩니다. 주의할 점은 발생하는 곳의 자료형이 포인터라는 것 입니다.
+
+| 1    | connect(this,SIGNAL(IamSignals()),this,SLOT(IamSlots())); | [cs](http://colorscripter.com/info#e) |
+| ---- | --------------------------------------------------------- | ------------------------------------- |
+|      |                                                           |                                       |
+
+여기에서는 SIGNAL과 SLOT과 connect를 한 클래스 내에서 사용했으므로 this를 사용한 모습입니다.
