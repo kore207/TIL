@@ -322,4 +322,9 @@ CONFIG(release) {
 
 ### QWidget
 > <https://stackoverflow.com/questions/40241527/qpushbutton-to-open-qwidget>
-* 버튼을 눌러서 콤보박스 형식으로 위젯을 띄우기 위해 버튼이벤트 내부에서 Widget을 호출하면 함수가 종료하는 순간 소멸되기 때문에 안된다.
+* 버튼을 눌러서 콤보박스 형식으로 위젯을 띄우기 위해 버튼이벤트 내부에서 Widget을 호출하면 함수가 종료하는 순간 소멸되기 때문에 dialog에서 사용하는 done(숫자)로  리턴받는것 보단 불편하다.
+  * 띄우는건 new 로 메모리 동적 할당을 받으면 된다.
+  * windowflag를 Qt::popup으로 주면 focusOut 될때 자동으로 꺼진다.
+* 보통 widget이나 dialog에서 this->close() 는 창을 가리는 것이지 메모리 영역에서 제거 되지는 않는다.
+  * 제거하기 위해서는 QWidget::setAttribute(Qt::WA_DeleteOnCLose)를 설정하면 되긴하지만 런타임중에 해당 위젯을 삭제하는 것은 위험하다. 
+  * 이런경우 deleteLate()를 호출해 두면 다음 이벤트 루프에서 해당 위젯이 삭제된다.
