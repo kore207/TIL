@@ -55,4 +55,65 @@
 #### 표준 입력
 
 * Console.ReadKey() :사용자가 눌린 키 한 문자 정보를 리턴하는 메서드
-* 
+
+#### 사용자 지정형
+
+* struct , 구조체에 선언된 const, static 변수만 초기화가능, 구조체 안에 선언할 수 있는 생성자는 매개변수가 반드시 있어야 함.
+    * 구조체를 같은 구조체에 대입하게 되면 값이 복사
+    * 구조체는 값 형식이고 클래스는 참조 형식임 (call by value, ref)
+
+```c#
+public struct 구조체 명
+{
+    //멤버, 속성, 메서드
+    public const float PI = 3.14f ;
+    public static int Age = 12 ;
+    //public int var ; //이렇게 하면 생성해서 사용해야한다.
+    //new를 통해 생성하면 0으로 setting이 된다.
+    public 구조체 명(int InAge) // 생성자
+    {
+        Age = InAge 
+    }
+}
+////////////////////////////////////////////////////
+//값과 참조
+namespace ConsoloeApplication1
+{
+    public struct MyStruct
+    {
+        public int Age ;
+    }
+    
+    class MyClass
+    {
+        public int Age ;
+    }
+    
+    class Program
+    {
+        static void Main(stringp[] args)
+        {
+            MyStruct test1 = new MyStruct() ;
+            test1.Age =12 ;
+            MyStrcut test2 = test1 ; 
+            test2.Age = 24 ; //이렇게 되면 값(value) 이 복사되기 때문에 각각 12, 24가 출력된다.
+            
+            MyClass test3 = new MyClass() ;
+            test3.Age =12 ;
+            MyClass test4 = test3 ;
+            test4.Age =24 ; //같은 객체에대한 참조형식이기 때문에 둘다 24가 출력이된다.
+            
+        }
+    }
+}
+
+```
+
+* 구조체는 구조체 또는 클래스에 상속할 수 없음 (C++에서는 가능)
+* enum : 상수를 문자열로 대치하여 선언, 상수에 의미 부여 
+    * enum 열거형 명칭{문자열1, 문자열2} ;
+    * enum 열거형 명칭{문자열1= 상수, 문자열2= 상수};
+    * enum열거형 명칭{문자열1=상수, 문자열2};
+    * 기본은 Int형이지만 char형을 제외한 형식 지정할수있음
+        * enum Days:byte{sum=0, Mon, Tue, Wed, Thu} ; //0 ,1 ,2 ...
+
