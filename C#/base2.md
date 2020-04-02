@@ -183,5 +183,85 @@
     * 속성 형식(get, setm return, value ) + 배열 형식(this[int index])
     * 배열과 같이 사용 , 객체명[인덱스] = 값 또는 변수; 변수= 객체명[인덱스 ;]
 
+---
 
+### 델리게이트와 이벤트
 
+* Delegate(위임하다) , 대리자
+
+* 델리게이트의 본질은 메서드 참조형이다. 
+
+* 속성과 인덱서는 멤버변수를 다루고, 델리게이트는 메서드를 다룬다.
+
+* 복수 또는 단일 메서드를 대신하여 호출하는 역할
+
+* ```c#
+    namespace ConsoleApplication1
+    {
+        delegate void DelegateType(string str) ;
+        
+        clss A
+        {
+            public void Print(string str)
+            {
+                Console.WriteLine(str) ;
+            }
+        }
+        
+        class program
+        {
+            static void Main(string[] args)
+            {
+                A Test = new A() ;
+                DelegateType DelMethod1 = new DelegateType(Test.Print) ; //c# 1.0이상
+                DelMethod1("Hello World") ; //대신 호출해서 사용하고있다.
+                
+                DelegateType DelMethoe2 = Test.Print ; //C#2.0 이상에서 사용가능
+                DelMethod2("Hello World") ;
+                
+            }
+        }
+    }
+    ```
+
+* **멀티캐스트 델리게이트(multicast delegate)**
+
+    * 데이터를 여러 사용자에게 동시에 보낸다.
+
+    * += ,-= 연산자로 추가
+
+    * ```c#
+        DelegateType DelFunc = Test.PrintA ;
+        DelFunc += Test.printB ;
+        DelFunc() ;
+        ```
+
+* **이벤트**
+
+    * 특정 상황이 발생했을 때 알리고자 하는 용도 (호출을 의미 + 데이터)
+
+    * 델리게이트를 기반으로 한다.
+
+    * 이벤트는 메서드 안에서만 사용가능
+
+    * ```c#
+        [Class A]
+        puvlic event DelegateType EventHandler ;
+        public void Func(string Message)
+        {
+            EventHandler(Message) ;
+        }
+        [Program]
+        static void Main(string[] args)
+        {
+            A Test1 = new A() ;
+            B Test1 = new B() ;
+            
+            Test1.EventHandler += new DelegateType(Test2.PrintA) ;
+            Test1.EventHandler += new DelegateType(Test2.PrintB) ;
+            Test1.Func("good") ;
+            
+        }
+        ```
+
+        
