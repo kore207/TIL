@@ -35,7 +35,7 @@
             transform: scale(1.5);
             -webkit-transform: scale(1.5);
         }
-    </style>
+    </style>    
     <!--네비게이션 영역-->
     <div id="navi" style="height:100%; float:left; width:13% ">
         <div class="buttons">
@@ -91,13 +91,14 @@
         $('.vw-logo').remove();                
         
         //마커 추가     
-        var dronNum = 0;        
-
+        var dronNum = 0;       
         
         var markerLayer; //마커를 담을 레이어 
-        var line_feature = new Array();
+        var line_feature = new Array(); //이동 경로 그릴 틀
         var vectorSource;
-        var vectorLayer;
+        var vectorLayer;        
+        //var mfeaturel = new Array();
+        let dronObject =[];
 
         $("#addDron").on("click", function (e) {                                    
 
@@ -106,6 +107,8 @@
                 return;
             }            
 
+            dronObject.push(new DronInfo(dronNum, "Dron" + dronNum, "익명", "010-xxxx-xxxx", "YES", 0));
+
             var addPoint = [];
             addPoint.push(ol.proj.transform([vmap.getView().getCenter()[0], vmap.getView().getCenter()[1]], "EPSG:900913", "EPSG:4326"));
             
@@ -113,29 +116,29 @@
                 markerLayer = new vw.ol3.layer.Marker(vmap);
             }
             
-            markerLayer.set("name", "마커레이어");
+            markerLayer.set("name", "마커레이어"); //이것도 null 일떄 너보기
             
             vw.ol3.markerOption = {
                 x: addPoint[0][0] ,
                 y: addPoint[0][1] ,
                 epsg: "EPSG:4326",
                 title: '가상 드론',
-                contents: dronInfoArray[dronNum].name + '</br>'
-                    + '소유주:' + dronInfoArray[dronNum].honer + '</br>'
-                    + '핸드폰 번호:' + dronInfoArray[dronNum].phone + '</br>'
-                    + '보험:' + dronInfoArray[dronNum].insurance + '</br>',
+                contents: dronObject[dronNum].name + '</br>'
+                    + '소유주:' + dronObject[dronNum].honer + '</br>'
+                    + '핸드폰 번호:' + dronObject[dronNum].phone + '</br>'
+                    + '보험:' + dronObject[dronNum].insurance + '</br>',
                 iconUrl: '../images/dronImg2.png',
             }; //마커 옵션 설정
-            
-            markerLayer.addMarker(vw.ol3.markerOption);// 마커를 레이어에 등록
-            //markerLayer.getSource().getFeatures().set("식별자", "ID_" + 1);
-            
-            //vmap.removeLayer(vmap.getLayerByName("마커레이어")) //vmap.getLayerByName(레이어명)            
+
+            dronObject.popInfo = markerLayer.addMarker(vw.ol3.markerOption);// 마커를 레이어에 등록                        
+            dronObject.popInfo.set("id", "Marker-" + dronNum); // 마커 팝업레이어 ID 등록
+                        
+
             if (vmap.getLayerByName("마커레이어") == null)//하나의 레이어에 추가한다.    
             {
                 markerLayer.setZIndex(10); // 이동 경로보다 마커가 위에오도록함 
                 vmap.addLayer(markerLayer) //마커를 vmap에 등록                        
-            }            
+            }
 
             //route 레이어 추가 
             line_feature[dronNum] = new ol.Feature({
@@ -156,8 +159,11 @@
             });
             vectorLayer.set("name", "경로레이어" + dronNum);
             vmap.addLayer(vectorLayer);
-
-            moveM(dronNum); //가상 전시를 위한 timer             
+                                    
+            dronObject[dronNum].startPause();
+            
+            
+            //moveM(dronNum); //가상 전시를 위한 timer             
 
             dronNum = plusTargetNum(dronNum);
 
@@ -179,10 +185,13 @@
             
             markerLayer.removeMarker(DronFeatures[dronNum]);
             
-            clearInterval(dronInfoArray[dronNum].interval);
+            //clearInterval(dronInfoArray[dronNum].interval);
             
             routeFeatures.pop();
             vmap.getLayers().getArray().filter(vectorLayer => vectorLayer.get('name') === '경로레이어' + dronNum).forEach(vectorLayer => vmap.removeLayer(vectorLayer));                                    
+
+            dronObject[dronNum].startPause(); //드론 비행시간 종료 
+            dronObject.pop(); //드론객체를 스택형식으로 사용하지만 추후에 선택된 드론으로 변경할지 검토
         });
         
 
@@ -233,7 +242,7 @@
 
         var moveM = function (dronN) {
             
-            dronInfoArray[dronNum].interval = setInterval(function () {
+            dronObject[dronNum].interval = setInterval(function () {
                 if (vmap.getLayerByName("마커레이어") == null) {
                     alert("드론이 없습니다.");
                     return;
@@ -241,6 +250,10 @@
                 var dronFeatures = vmap.getLayerByName("마커레이어").getSource().getFeatures(); // 마커레이어를 가져온다.
 
                 for (var i = 0; i < dronFeatures.length; i++) {
+
+                    //dronInfoArray[i].flyTime = dronInfoArray[i].flyTimeSet(dronInfoArray[i].flyTime);
+                    //console.log(dronInfoArray[i].flyTime);
+
                     var oldcoor = dronFeatures[i].getGeometry().getCoordinates();
                     var newcoor;
                     moveRect(300);
@@ -248,19 +261,19 @@
                         newcoor = [oldcoor[0] + dx, oldcoor[1] + dy];
                     else if (i == 2) {
                         newcoor = [oldcoor[0] + dx, oldcoor[1] - dy];
-                        if (dx > 0) {
-                            var imgSrc = '../images/dronImg2warn.png';
+                        //if (dx > 0) {
+                        //    var imgSrc = '../images/dronImg2warn.png';
 
-                            var iconStyle = new ol.style.Style({
-                                image: new ol.style.Icon(({
-                                    anchor: [0.5, 46], //마커 이미지의 절대위치를 변경
-                                    anchorXUnits: 'fraction',
-                                    anchorYUnits: 'pixels',
-                                    src: imgSrc
-                                }))
-                            });
-                            dronFeatures[i].setStyle(iconStyle);
-                        }
+                        //    var iconStyle = new ol.style.Style({
+                        //        image: new ol.style.Icon(({
+                        //            anchor: [0.5, 0.5], //마커 이미지의 절대위치를 변경
+                        //            anchorXUnits: 'fraction',
+                        //            anchorYUnits: 'pixels',
+                        //            src: imgSrc,                        
+                        //        }))
+                        //    });
+                        //    dronFeatures[i].setStyle(iconStyle);                            
+                        //}
                     }
                     else if (i == 3)
                         newcoor = [oldcoor[0] - dx, oldcoor[1] - dy];
@@ -269,62 +282,39 @@
                     else
                         newcoor = [oldcoor[0] + dx, oldcoor[1] - dy];
 
-                    dronFeatures[i].getGeometry().setCoordinates(newcoor);
-                    //route 표시                  
-                    line_feature[i].getGeometry().appendCoordinate(newcoor);
-                }                                                                                
-                
+                    var rotation;
+                    if (dir == 1) {
+                        rotation = Math.PI / 2.0;
+                    }
+                    else if (dir == 2) {
+                        rotation = Math.PI ;
+                    }
+                    else if (dir == 3) {
+                        rotation = -(Math.PI / 2.0);
+                    }
 
+                    var iconStyle = new ol.style.Style({
+                        image: new ol.style.Icon(({
+                            anchor: [0.5, 0.5], //마커 이미지의 절대위치를 변경
+                            anchorXUnits: 'fraction',
+                            anchorYUnits: 'pixels',
+                            src: '../images/dronImg2.png',                            
+                            rotation: rotation,
+                        }))
+                    });
+                    dronFeatures[i].setStyle(iconStyle);    
+
+
+                    dronFeatures[i].getGeometry().setCoordinates(newcoor);
+
+                    //route 표시                  
+                    //if (distance % 100 == 0) {                        
+                        line_feature[i].getGeometry().appendCoordinate(newcoor);                        
+                    //}
+                }                                                                                                
             }, 100);
         }
-        
-        //var moveM = function (dronN) {            
-        //    var t = setInterval(function () {
-        //        if (vmap.getLayerByName("마커레이어") == null) {
-        //            alert("드론이 없습니다.");
-        //            return;
-        //        }
-        //        var dronFeatures = vmap.getLayerByName("마커레이어").getSource().getFeatures(); // 마커레이어를 가져온다.
-               
-        //        var oldcoor = dronFeatures[dronNum-1].getGeometry().getCoordinates();
-        //        var newcoor;
-        //        moveRect(300);
-        //        if (dronN == 1)
-        //            newcoor = [oldcoor[0] + dx, oldcoor[1] + dy];
-        //        else if (dronN == 2) {
-        //            newcoor = [oldcoor[0] + dx, oldcoor[1] - dy];
-        //            if (dx > 0) {
-        //                var imgSrc = '../images/dronImg2warn.png';
-
-        //                var iconStyle = new ol.style.Style({
-					   //     image: new ol.style.Icon( ({
-						  //      anchor: [0.5, 46], //마커 이미지의 절대위치를 변경
-						  //      anchorXUnits: 'fraction',
-						  //      anchorYUnits: 'pixels',
-						  //      src: imgSrc
-					   //     }))
-				    //    });
-        //                dronFeatures[dronNum-1].setStyle(iconStyle);
-        //            }
-        //        }
-        //        else if (dronN == 3)
-        //            newcoor = [oldcoor[0] - dx, oldcoor[1] - dy];
-        //        else if (dronN == 4)
-        //            newcoor = [oldcoor[0] - dx, oldcoor[1] + dy];
-        //        else
-        //            newcoor = [oldcoor[0] + dx, oldcoor[1] - dy];
-
-        //        dronFeatures[dronNum-1].getGeometry().setCoordinates(newcoor);
-
-        //        //route 표시                  
-        //        line_feature.getGeometry().appendCoordinate(newcoor);
-                    
-        //    }, 100);
-        //}
-
-        
-        
-                              
+                                              
         var layList = ["lt_c_aisprhc", "lt_c_aisctrc", "lt_c_aisresc", "lt_c_aisdngc", "lt_c_aismoac", "lt_c_aiscatc", "lt_c_aistmac"];
           
         $('#'+layList[0]).change(function () {            

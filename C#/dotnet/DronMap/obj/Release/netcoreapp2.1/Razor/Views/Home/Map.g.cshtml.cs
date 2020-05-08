@@ -72,7 +72,7 @@ using DronMap.ViewModels;
             WriteLiteral("<h2>Dron map</h2>\r\n\r\n<!doctype html>\r\n    <html lang=\"ko\">\r\n    ");
             EndContext();
             BeginContext(554, 757, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1b1dacb73c904cb58ae506112eab28fa", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d6e7e2df79904312b2575a89907664d1", async() => {
                 BeginContext(560, 744, true);
                 WriteLiteral(@"
         <meta charset=""utf-8"">
@@ -102,7 +102,7 @@ using DronMap.ViewModels;
             WriteLiteral("\r\n    ");
             EndContext();
             BeginContext(1317, 27807, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "500617a230774bb2a9c51a087ea35f38", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "317c133474364af784cad7f813bf3c58", async() => {
                 BeginContext(1323, 27794, true);
                 WriteLiteral(@"
         <style type=""text/css"">

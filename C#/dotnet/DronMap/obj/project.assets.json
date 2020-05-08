@@ -11803,23 +11803,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\K\\.nuget\\packages\\": {},
+    "C:\\Users\\CEO\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\K\\Documents\\TIL\\C#\\dotnet\\DronMap\\DronMap.csproj",
+      "projectUniqueName": "C:\\Users\\CEO\\Desktop\\소형드론\\source\\DronMap\\DronMap\\DronMap.csproj",
       "projectName": "DronMap",
-      "projectPath": "C:\\Users\\K\\Documents\\TIL\\C#\\dotnet\\DronMap\\DronMap.csproj",
-      "packagesPath": "C:\\Users\\K\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\K\\Documents\\TIL\\C#\\dotnet\\DronMap\\obj\\",
+      "projectPath": "C:\\Users\\CEO\\Desktop\\소형드론\\source\\DronMap\\DronMap\\DronMap.csproj",
+      "packagesPath": "C:\\Users\\CEO\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\CEO\\Desktop\\소형드론\\source\\DronMap\\DronMap\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\K\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\CEO\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
