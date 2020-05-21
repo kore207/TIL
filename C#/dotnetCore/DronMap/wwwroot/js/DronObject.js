@@ -134,6 +134,7 @@ function DronInfo(dnum, name, honer, phone, insurance, time) {//객체 생성자
     }
     
     this.moveDron = function (dObj) {
+        
         let _this = dObj;
         let oldcoor;
         let newcoor;
@@ -163,6 +164,8 @@ function DronInfo(dnum, name, honer, phone, insurance, time) {//객체 생성자
                 _this.line_feature.getGeometry().appendCoordinate(newcoor);                
                 
                 _this.moveDron(_this);
+                
+                ajaxTest(newcoor[0], newcoor[1]);
             }, 100)           
         }
     };    

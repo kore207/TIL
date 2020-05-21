@@ -318,12 +318,53 @@
         };
     </script>
 
-    <input type="button" value="fetch" onclick="
-    fetch('css2').then(function (response) {
-		response.text().then(function(text){
-			alert(text);
-		})
-    })
-    ">
+    <input type="button" value="fetch" onclick="ajaxTest();">
+
+    <form id="dataForm">
+        <input type="hidden" name="domain" value="http://127.0.0.1">
+        <input type="hidden" name="service" value="WFS">
+        <input type="hidden" name="version" value="1.1.0">
+        <input type="hidden" name="request" value="GetFeature">
+        <input type="hidden" name="key" value="B3A5C06A-E388-3A4D-B45F-CC45EF4F315E">
+        <input type="hidden" name="output" value="text/javascript">
+        <input type="hidden" name="typename" value="lt_c_aisprhc">
+        <input type="hidden" name="bbox" value="">
+        <input type="hidden" name="srsname" value="EPSG:4326">        
+    </form>
+
+    <script>       
+        var returnResult = "";
+        //비행 금지구역 체크 
+        function ajaxTest(dx, dy) {            
+            var addPoint = [];
+            addPoint.push(ol.proj.transform([vmap.getView().getCenter()[0], vmap.getView().getCenter()[1]], "EPSG:900913", "EPSG:4326"));//현재 지도의 중앙 좌표 콜            
+            //addPoint.push(ol.proj.transform([dx, dy], "EPSG:900913", "EPSG:4326"));
+            //var box = dx + "," + dy + "," + dx + "," + dy;
+            var box = addPoint[0][0] + "," + addPoint[0][1] + "," + addPoint[0][0] + "," + addPoint[0][1];            
+
+           
+            $('#dataForm > [name=bbox]').val(box);
+            $.ajax({
+                type: "get",
+                url: "https://api.vworld.kr/req/wfs",
+                data: $('#dataForm').serialize(),
+                dataType: 'jsonp',
+                async: false,
+                jsonpCallback: "parseResponse",
+                success: function (data) {
+                    //console.log(data);
+                    //console.log(data.features[0].properties);                    
+                    returnResult = "정상";                    
+                    if (data.features[0]) {
+                        returnResult = "비행제한구역";                        
+                    }                    
+                },
+                error: function (xhr, stat, err) {
+                    //console.log("error");                    
+                }
+            });
+            console.log(returnResult);
+        }
+    </script>
 </body>
 </html>

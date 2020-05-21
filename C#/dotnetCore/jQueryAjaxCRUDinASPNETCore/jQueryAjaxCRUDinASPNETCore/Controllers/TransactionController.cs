@@ -57,7 +57,7 @@ namespace jQueryAjaxCRUDinASPNETCore.Controllers
                 {
                     transactionModel.Date = DateTime.Now;
                     _context.Add(transactionModel);
-                    await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();                    
                 }
                 else
                 {

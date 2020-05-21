@@ -39,5 +39,11 @@ namespace jQueryAjaxCRUDinASPNETCore.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //[ValidateAntiForgeryToken]
+        public IActionResult OnPost()
+        {
+            return new JsonResult("Hello Response Back");
+        }
     }
 }

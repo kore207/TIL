@@ -28,6 +28,9 @@ namespace jQueryAjaxCRUDinASPNETCore
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
+            
+
             services.AddDbContext<TransactionDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
