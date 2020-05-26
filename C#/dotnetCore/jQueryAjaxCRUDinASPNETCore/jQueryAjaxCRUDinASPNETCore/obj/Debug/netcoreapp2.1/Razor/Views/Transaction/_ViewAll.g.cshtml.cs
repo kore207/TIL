@@ -185,7 +185,7 @@ WriteAttributeValue("", 1571, Url.Action("AddOrEdit","Transaction",new { id = it
             WriteLiteral("                ");
             EndContext();
             BeginContext(1866, 228, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "19816a90f9084e46aa98b3ac115af826", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "08b59d43527544dfbe8ffd0a0963d2a5", async() => {
                 BeginContext(1986, 101, true);
                 WriteLiteral("\r\n                    <input type=\"submit\" value=\"Delete\" class=\"btn btn-danger\" />\r\n                ");
                 EndContext();

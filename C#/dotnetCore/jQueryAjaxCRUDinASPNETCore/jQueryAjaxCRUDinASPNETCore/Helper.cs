@@ -34,5 +34,8 @@ namespace jQueryAjaxCRUDinASPNETCore
             }
         }
 
+        //Attyibutes
+        
+
     }
 }

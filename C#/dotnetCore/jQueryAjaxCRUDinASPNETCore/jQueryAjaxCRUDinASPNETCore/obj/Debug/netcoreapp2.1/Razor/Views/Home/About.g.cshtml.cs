@@ -83,7 +83,7 @@ Write(ViewData["Message"]);
             WriteLiteral("</h3>\r\n\r\n<p>Use this area to provide additional information.</p>\r\n\r\n\r\n");
             EndContext();
             BeginContext(164, 122, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f53801d5ec924b8bb2e4b5477f3d9876", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "60a4eaffa5e04d44b4d53564d1871c1d", async() => {
                 BeginContext(184, 95, true);
                 WriteLiteral("\r\n    <input type=\"button\" value=\"Ajax test\" class=\"btn btn-default\" onclick=\"ajaxTest();\" />\r\n");
                 EndContext();
@@ -107,7 +107,7 @@ Write(ViewData["Message"]);
             WriteLiteral("\r\n\r\n");
             EndContext();
             BeginContext(290, 51, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "492b693475434ae1b0111dc17f596436", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2246d641654648a6ad437c3bc0cb52c0", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

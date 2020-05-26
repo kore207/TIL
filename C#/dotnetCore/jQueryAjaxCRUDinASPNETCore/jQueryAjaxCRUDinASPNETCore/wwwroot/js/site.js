@@ -3,12 +3,12 @@
 
 // Write your JavaScript code.
 
-$(function () {
+$(function () {    
     $("#loaderbody").addClass('hide');
 
-    $(document).bind('ajaxStart', function () {
+    $(document).bind('ajaxStart', function () {        
         $("#loaderbody").removeClass('hide');
-    }).bind('ajaxStop', function () {
+    }).bind('ajaxStop', function () {        
         $("#loaderbody").addClass('hide');
     });
 });
@@ -20,6 +20,7 @@ showInPopup = (url, title) => {
         success: function (res) {
             $('#form-modal .modal-body').html(res);
             $('#form-modal .modal-title').html(title);
+            
             $('#form-modal').modal('show');
         }
     })
@@ -38,8 +39,8 @@ jQueryAjaxPost = form => {
                     $('#view-all').html(res.html);
                     $('#form-modal .modal-body').html('');
                     $('#form-modal .modal-title').html('');
-                    $('#form-modal').html('hide');
-                    $.notify('submitted successfully', { globalPosition: 'top center', className:'success' });
+                    $('#form-modal').modal('hide');
+                    $.notify('submitted successfully', { globalPosition: 'top center', className: 'success' });                    
                 }
                 else
                     $('#form-modal .modal-body').html(res.html);
