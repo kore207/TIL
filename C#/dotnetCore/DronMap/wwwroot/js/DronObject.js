@@ -134,7 +134,7 @@ function DronInfo(dnum, name, honer, phone, insurance, time) {//객체 생성자
     }
     
     this.moveDron = function (dObj) {
-        
+        console.log(returnResult, "objF");
         let _this = dObj;
         let oldcoor;
         let newcoor;

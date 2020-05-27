@@ -42,6 +42,7 @@
             transform: scale(1.5);
             -webkit-transform: scale(1.5);
         }
+       
     </style>
     <!--네비게이션 영역-->
     <div id="navi" style="height:100%; float:left; width:13% ">
@@ -71,16 +72,16 @@
             <label class="custom-control-label" for="customCheck1" style="color:blue"> 훈련구역    25kg↑</label><br />
             <input type="checkbox" class="custom-control-input" id="lt_c_aistmac">
             <label class="custom-control-label" for="customCheck1" style="color:brown"> 접근관제구역 25kg↑</label>
-        </div>
+        </div>     
     </div>
 
+    
     <!--지도가 들어갈 영역-->
-    <div id="vmap" style="height:100%; float:right; width:87%">
-        <button id="mapmode1" type="button" class="mapBtn btn btn-default">일반지도</button>
-        <button id="mapmode2" type="button" class="mapBtn btn btn-default">야간모드</button>
-        <button id="mapmode3" type="button" class="mapBtn btn btn-default">항공지도</button>
-        <button id="mapmode4" type="button" class="mapBtn btn btn-default">하이브리드</button>
-
+    <div id="vmap" style="height:100%; float:right; width:87% ">
+        <button id="mapmode1" type="button" class="mapBtn btn btn-default active" style="position:absolute; margin-top:-100px; margin-left:570px;">일반지도</button>
+        <button id="mapmode2" type="button" class="mapBtn btn btn-default" style="position:absolute; margin-top:-100px; margin-left:650px;">야간모드</button>
+        <button id="mapmode3" type="button" class="mapBtn btn btn-default" style="position:absolute; margin-top:-100px; margin-left:730px;">항공지도</button>
+        <button id="mapmode4" type="button" class="mapBtn btn btn-default" style="position:absolute; margin-top:-100px; margin-left:810px;">하이브리드</button>
     </div>
 
     <script type="text/javascript">
@@ -98,11 +99,15 @@
             , initPosition: vw.ol3.CameraPosition
         };
 
-        vmap = new vw.ol3.Map("vmap", vw.ol3.MapOptions);
-
+        vmap = new vw.ol3.Map("vmap", vw.ol3.MapOptions);       
+      
         //실제 사용시에는 저작권 문제로인해 로고 삭제하면 안됨
-        $('.vw-notice').remove();
-        $('.vw-logo').remove();
+        //$('.vw-notice').remove();
+        //$('.vw-logo').remove();
+        $('.vw-span').css({ position:"absolute" })
+        $('.vw-toolbar').css({ position: "absolute", display: "block", marginLeft: "25px", width: "390px", height: "30px" })
+
+        
 
         //마커 추가
         const dronNumLimit = 5;
@@ -272,24 +277,47 @@
             }
         });
 
-        $("#mapmode1").on("click", function (e) {
+        $("#mapmode1").on("click", function (e) {           
             e.preventDefault();
             setMode(vw.ol3.BasemapType.GRAPHIC);
+            $("#mapmode1").addClass('active')
+            $("#mapmode2").removeClass('active')
+            $("#mapmode3").removeClass('active')
+            $("#mapmode4").removeClass('active')
         })
 
         $("#mapmode2").on("click", function (e) {
             e.preventDefault();
             setMode(vw.ol3.BasemapType.GRAPHIC_NIGHT);
+            $("#mapmode1").removeClass('active')
+            $("#mapmode2").addClass('active')
+            $("#mapmode3").removeClass('active')
+            $("#mapmode4").removeClass('active')
         })
 
         $("#mapmode3").on("click", function (e) {
             e.preventDefault();
             setMode(vw.ol3.BasemapType.PHOTO);
+            $("#mapmode1").removeClass('active')
+            $("#mapmode2").removeClass('active')
+            $("#mapmode3").addClass('active')
+            $("#mapmode4").removeClass('active')
         })
 
         $("#mapmode4").on("click", function (e) {
             e.preventDefault();
             setMode(vw.ol3.BasemapType.PHOTO_HYBRID);
+            $("#mapmode1").removeClass('active')
+            $("#mapmode2").removeClass('active')
+            $("#mapmode3").removeClass('active')
+            $("#mapmode4").addClass('active')
+        })
+
+        $(".vw-span").click(function () {
+            $("#mapmode1").toggle(                
+                function () { $('#mapmode1').addClass('d.none')},
+                function () { $('#mapmode1').addClass('d.print') }
+            )
         })
 
         function setMode(basemapType) {
@@ -329,20 +357,20 @@
         <input type="hidden" name="output" value="text/javascript">
         <input type="hidden" name="typename" value="lt_c_aisprhc">
         <input type="hidden" name="bbox" value="">
-        <input type="hidden" name="srsname" value="EPSG:4326">        
+        <input type="hidden" name="srsname" value="EPSG:4326">
     </form>
 
-    <script>       
+    <script>
         var returnResult = "";
-        //비행 금지구역 체크 
-        function ajaxTest(dx, dy) {            
+        //비행 금지구역 체크
+        function ajaxTest(dx, dy) {
             var addPoint = [];
-            addPoint.push(ol.proj.transform([vmap.getView().getCenter()[0], vmap.getView().getCenter()[1]], "EPSG:900913", "EPSG:4326"));//현재 지도의 중앙 좌표 콜            
-            //addPoint.push(ol.proj.transform([dx, dy], "EPSG:900913", "EPSG:4326"));
+            //addPoint.push(ol.proj.transform([vmap.getView().getCenter()[0], vmap.getView().getCenter()[1]], "EPSG:900913", "EPSG:4326"));//현재 지도의 중앙 좌표 콜
+            addPoint.push(ol.proj.transform([dx, dy], "EPSG:900913", "EPSG:4326"));
             //var box = dx + "," + dy + "," + dx + "," + dy;
-            var box = addPoint[0][0] + "," + addPoint[0][1] + "," + addPoint[0][0] + "," + addPoint[0][1];            
+            var box = addPoint[0][0] + "," + addPoint[0][1] + "," + addPoint[0][0] + "," + addPoint[0][1];
 
-           
+
             $('#dataForm > [name=bbox]').val(box);
             $.ajax({
                 type: "get",
@@ -353,17 +381,16 @@
                 jsonpCallback: "parseResponse",
                 success: function (data) {
                     //console.log(data);
-                    //console.log(data.features[0].properties);                    
-                    returnResult = "정상";                    
+                    //console.log(data.features[0].properties);
+                    returnResult = "정상";
                     if (data.features[0]) {
-                        returnResult = "비행제한구역";                        
-                    }                    
+                        returnResult = "비행제한구역";
+                    }
                 },
                 error: function (xhr, stat, err) {
-                    //console.log("error");                    
+                    //console.log("error");
                 }
             });
-            console.log(returnResult);
         }
     </script>
 </body>
