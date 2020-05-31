@@ -19,6 +19,7 @@
     <script type="text/javascript" src="https://map.vworld.kr/js/vworldMapInit.js.do?version=2.0&apiKey=B4DB6C25-ADD1-3B61-AED5-934A7F0E07BF&domain=localhost:8080"></script>
     <script type="text/javascript" src="~/js/BaseFunction.js"></script>
     <script type="text/javascript" src="~/js/DronObject.js"></script>
+    
 </head>
 
 <body>
@@ -42,7 +43,6 @@
             transform: scale(1.5);
             -webkit-transform: scale(1.5);
         }
-       
     </style>
     <!--네비게이션 영역-->
     <div id="navi" style="height:100%; float:left; width:13% ">
@@ -72,10 +72,10 @@
             <label class="custom-control-label" for="customCheck1" style="color:blue"> 훈련구역    25kg↑</label><br />
             <input type="checkbox" class="custom-control-input" id="lt_c_aistmac">
             <label class="custom-control-label" for="customCheck1" style="color:brown"> 접근관제구역 25kg↑</label>
-        </div>     
+        </div>
     </div>
 
-    
+
     <!--지도가 들어갈 영역-->
     <div id="vmap" style="height:100%; float:right; width:87% ">
         <button id="mapmode1" type="button" class="mapBtn btn btn-default active" style="position:absolute; margin-top:-100px; margin-left:570px;">일반지도</button>
@@ -99,15 +99,15 @@
             , initPosition: vw.ol3.CameraPosition
         };
 
-        vmap = new vw.ol3.Map("vmap", vw.ol3.MapOptions);       
-      
+        vmap = new vw.ol3.Map("vmap", vw.ol3.MapOptions);
+
         //실제 사용시에는 저작권 문제로인해 로고 삭제하면 안됨
         //$('.vw-notice').remove();
         //$('.vw-logo').remove();
-        $('.vw-span').css({ position:"absolute" })
+        $('.vw-span').css({ position: "absolute" })
         $('.vw-toolbar').css({ position: "absolute", display: "block", marginLeft: "25px", width: "390px", height: "30px" })
 
-        
+
 
         //마커 추가
         const dronNumLimit = 5;
@@ -277,7 +277,7 @@
             }
         });
 
-        $("#mapmode1").on("click", function (e) {           
+        $("#mapmode1").on("click", function (e) {
             e.preventDefault();
             setMode(vw.ol3.BasemapType.GRAPHIC);
             $("#mapmode1").addClass('active')
@@ -314,8 +314,8 @@
         })
 
         $(".vw-span").click(function () {
-            $("#mapmode1").toggle(                
-                function () { $('#mapmode1').addClass('d.none')},
+            $("#mapmode1").toggle(
+                function () { $('#mapmode1').addClass('d.none') },
                 function () { $('#mapmode1').addClass('d.print') }
             )
         })
@@ -360,6 +360,12 @@
         <input type="hidden" name="srsname" value="EPSG:4326">
     </form>
 
+
+    
+    <p><span>역지오코더 위치 : </span><span id="geoAddress"></span> </p>
+    <p><span>좌표(4326) : </span><span id="geo4326"></span> </p>
+    <p><span>좌표(3857) : </span><span id="geo3857"></span> </p>
+
     <script>
         var returnResult = "";
         //비행 금지구역 체크
@@ -392,6 +398,39 @@
                 }
             });
         }
+
+        var geocoder_reverse = function (x, y) {
+            $.ajax({
+                type: "get",
+                url: "https://api.vworld.kr/req/address?service=address&version=2.0&request=getaddress&format=json&type=both&crs=epsg:900913",
+                data: { apiKey: $('[name=key]').val(), point: x + "," + y },
+                dataType: 'jsonp',
+                success: function (data) {
+                    var geoResult = "";
+                    for (i in data.response.result) {
+                        if (i != 0) {
+                            geoResult += ", ";
+                        }
+                        geoResult += data.response.result[i].text;
+                    }
+                    $('#geoAddress').text(geoResult);
+                },
+                beforeSend: function () {
+                    var g4326 = ol.proj.transform([x * 1, y * 1], 'EPSG:900913', "EPSG:4326");
+                    $('#geo4326').text(g4326[0] + "," + g4326[1]);
+                    $('#geo3857').text(x + "," + y);
+
+                },
+
+                error: function (xhr, stat, err) { }
+            });
+        }
+
+        vmap.on("moveend", function (evt) {
+            var center = vmap.getView().getCenter();
+
+            geocoder_reverse(center[0], center[1]);
+        });
     </script>
 </body>
 </html>
