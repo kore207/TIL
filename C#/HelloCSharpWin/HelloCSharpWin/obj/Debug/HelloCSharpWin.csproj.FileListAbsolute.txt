@@ -1,9 +1,0 @@
-C:\Users\K\Documents\TIL\C#\HelloCSharpWin\HelloCSharpWin\bin\Debug\HelloCSharpWin.exe
-C:\Users\K\Documents\TIL\C#\HelloCSharpWin\HelloCSharpWin\bin\Debug\HelloCSharpWin.pdb
-C:\Users\K\Documents\TIL\C#\HelloCSharpWin\HelloCSharpWin\obj\Debug\HelloCSharpWin.csprojAssemblyReference.cache
-C:\Users\K\Documents\TIL\C#\HelloCSharpWin\HelloCSharpWin\obj\Debug\HelloCSharpWin.Calculator.resources
-C:\Users\K\Documents\TIL\C#\HelloCSharpWin\HelloCSharpWin\obj\Debug\HelloCSharpWin.Properties.Resources.resources
-C:\Users\K\Documents\TIL\C#\HelloCSharpWin\HelloCSharpWin\obj\Debug\HelloCSharpWin.csproj.GenerateResource.cache
-C:\Users\K\Documents\TIL\C#\HelloCSharpWin\HelloCSharpWin\obj\Debug\HelloCSharpWin.csproj.CoreCompileInputs.cache
-C:\Users\K\Documents\TIL\C#\HelloCSharpWin\HelloCSharpWin\obj\Debug\HelloCSharpWin.exe
-C:\Users\K\Documents\TIL\C#\HelloCSharpWin\HelloCSharpWin\obj\Debug\HelloCSharpWin.pdb

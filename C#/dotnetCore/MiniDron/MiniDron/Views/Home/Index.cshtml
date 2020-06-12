@@ -1,0 +1,33 @@
+﻿@{
+    //Layout = null;
+    ViewData["Title"] = "Home Page";
+}
+
+
+@*<div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@
+
+<div class="container" style="margin-top:100px; text-align:center">
+    <label>사용자 ID</label>
+    <input type="text" placeholder="사용자 ID 입력" />
+    <label>비밀번호</label>
+    <input type="password" placeholder="비밀번호 입력" />
+    <button type="submit" class="btn btn-success">로그인</button>
+</div>
+
+<div class="container" style="margin-top:10px;width:600px; height:400px;border:1px solid gray;">
+    design
+</div>
+
+<div class="container" style="margin-top:10px; text-align:center">
+    <a asp-area="" asp-controller="Present" asp-action="PMap" class="btn-lg btn-primary mr-5">운용 현황</a>
+    <a asp-area="" asp-controller="History" asp-action="HMap" class="btn-lg btn-primary mr-5">이력 조회</a>
+    <a asp-area="" asp-controller="Statistic" asp-action="StatisticView" class="btn-lg btn-primary mr-5">통계 조회</a>
+</div>
+
+<script type="text/javascript">
+    var a = document.getElementsByTagName("header");
+    a[0].hidden = true; //_layout 에서 공유하는 네비게이션 가림
+</script>
