@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CEO\\Desktop\\소형드론\\source\\MiniDron\\MiniDron\\MiniDron.csproj": {}
+    "C:\\Users\\K\\Documents\\TIL\\C#\\dotnetCore\\MiniDron\\MiniDron\\MiniDron.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CEO\\Desktop\\소형드론\\source\\MiniDron\\MiniDron\\MiniDron.csproj": {
+    "C:\\Users\\K\\Documents\\TIL\\C#\\dotnetCore\\MiniDron\\MiniDron\\MiniDron.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CEO\\Desktop\\소형드론\\source\\MiniDron\\MiniDron\\MiniDron.csproj",
+        "projectUniqueName": "C:\\Users\\K\\Documents\\TIL\\C#\\dotnetCore\\MiniDron\\MiniDron\\MiniDron.csproj",
         "projectName": "MiniDron",
-        "projectPath": "C:\\Users\\CEO\\Desktop\\소형드론\\source\\MiniDron\\MiniDron\\MiniDron.csproj",
-        "packagesPath": "C:\\Users\\CEO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\CEO\\Desktop\\소형드론\\source\\MiniDron\\MiniDron\\obj\\",
+        "projectPath": "C:\\Users\\K\\Documents\\TIL\\C#\\dotnetCore\\MiniDron\\MiniDron\\MiniDron.csproj",
+        "packagesPath": "C:\\Users\\K\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\K\\Documents\\TIL\\C#\\dotnetCore\\MiniDron\\MiniDron\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\CEO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\K\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -48,6 +48,10 @@
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
               "version": "[3.1.4, )"
+            },
+            "OpenLayers": {
+              "target": "Package",
+              "version": "[3.10.1, )"
             }
           },
           "imports": [
@@ -60,12 +64,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.2, 3.1.2]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -74,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

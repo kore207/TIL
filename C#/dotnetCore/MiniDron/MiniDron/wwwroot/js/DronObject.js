@@ -49,9 +49,9 @@
     this.iconFeature;
     this.style2 = new ol.style.Style({
         image: new ol.style.Circle({
-            radius: 2,
+            radius: 0.1,
             fill: new ol.style.Fill({ color: '#FF0000' }), //내부 원 
-            stroke: new ol.style.Stroke({ color: '#0000FF', width: 1 }) // 외부 테두리
+            stroke: new ol.style.Stroke({ color: '#0000FF', width: 0.1 }) // 외부 테두리
         })
     });
     this.vectorSource2;

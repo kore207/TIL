@@ -330,6 +330,9 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
+      "OpenLayers/3.10.1": {
+        "type": "package"
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -1951,6 +1954,20 @@
         "netstandard.library.nuspec"
       ]
     },
+    "OpenLayers/3.10.1": {
+      "sha512": "fk7urGNhIfL4eIRMlMElPErhoG9mV5KbPXE601VZw8eo9uZpHohNJ0PeSmXbpqKIOSGYaloZ55xx0X4/JWyZlA==",
+      "type": "package",
+      "path": "openlayers/3.10.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/scripts/ol-debug.js",
+        "content/scripts/ol.css",
+        "content/scripts/ol.js",
+        "openlayers.3.10.1.nupkg.sha512",
+        "openlayers.nuspec"
+      ]
+    },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "sha512": "HdSSp5MnJSsg08KMfZThpuLPJpPwE5hBXvHwoKWosyHHfe8Mh5WKT0ylEOf6yNzX6Ngjxe4Whkafh5q7Ymac4Q==",
       "type": "package",
@@ -2087,6 +2104,7 @@
       "path": "runtime.osx.10.10-x64.runtime.native.system.security.cryptography.apple/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.osx.10.10-x64.runtime.native.system.security.cryptography.apple.4.3.0.nupkg.sha512",
@@ -2113,6 +2131,7 @@
       "path": "runtime.rhel.7-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.rhel.7-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -2126,6 +2145,7 @@
       "path": "runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -2139,6 +2159,7 @@
       "path": "runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -2152,6 +2173,7 @@
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -4461,6 +4483,7 @@
       "path": "system.security.cryptography.cng/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/net46/System.Security.Cryptography.Cng.dll",
@@ -5296,27 +5319,28 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "ClosedXML >= 0.95.3",
-      "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 3.1.4"
+      "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 3.1.4",
+      "OpenLayers >= 3.10.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\CEO\\.nuget\\packages\\": {},
+    "C:\\Users\\K\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CEO\\Desktop\\소형드론\\source\\MiniDron\\MiniDron\\MiniDron.csproj",
+      "projectUniqueName": "C:\\Users\\K\\Documents\\TIL\\C#\\dotnetCore\\MiniDron\\MiniDron\\MiniDron.csproj",
       "projectName": "MiniDron",
-      "projectPath": "C:\\Users\\CEO\\Desktop\\소형드론\\source\\MiniDron\\MiniDron\\MiniDron.csproj",
-      "packagesPath": "C:\\Users\\CEO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CEO\\Desktop\\소형드론\\source\\MiniDron\\MiniDron\\obj\\",
+      "projectPath": "C:\\Users\\K\\Documents\\TIL\\C#\\dotnetCore\\MiniDron\\MiniDron\\MiniDron.csproj",
+      "packagesPath": "C:\\Users\\K\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\K\\Documents\\TIL\\C#\\dotnetCore\\MiniDron\\MiniDron\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\CEO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\K\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5347,6 +5371,10 @@
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
             "target": "Package",
             "version": "[3.1.4, )"
+          },
+          "OpenLayers": {
+            "target": "Package",
+            "version": "[3.10.1, )"
           }
         },
         "imports": [
@@ -5359,12 +5387,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[3.1.2, 3.1.2]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -5373,7 +5395,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

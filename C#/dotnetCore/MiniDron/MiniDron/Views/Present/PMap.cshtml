@@ -17,6 +17,10 @@
     @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" />
         <script src="https://code.jquery.com/jquery-latest.min.js"></script>*@
     <script type="text/javascript" src="~/js/DronObject.js"></script>
+        @*<link rel="stylesheet" href="https://openlayers.org/en/v3.20.1/css/ol.css" type="text/css">*@
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    @*<script src="https://openlayers.org/en/v3.20.1/build/ol.js"></script>*@
+    
 </head>
 <body>
     <style type="text/css">
@@ -53,26 +57,76 @@
             padding-top: 0px;
         }
 
-            .sidebar a {
-                padding: 8px 8px 8px 32px;
-                text-decoration: none;
-                font-size: 25px;
-                color: #818181;
-                display: block;
-                transition: 0.3s;
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+
+        .ol-popup {
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #cccccc;
+            bottom: 12px;
+            left: -50px;
+            min-width: 280px;
+        }
+
+        .ol-popup:after, .ol-popup:before {
+            top: 100%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .ol-popup:after {
+            border-top-color: white;
+            border-width: 10px;
+            left: 48px;
+            margin-left: -10px;
+            border:none;
+        }
+
+            .ol-popup:before {
+                border-top-color: #cccccc;
+                border-width: 11px;
+                left: 48px;
+                margin-left: -11px;
+                border: none;
             }
 
-                .sidebar a:hover {
-                    color: #f1f1f1;
-                }
+        .ol-popup-closer {
+            text-decoration: none;
+            position: absolute;
+            top: 2px;
+            right: 8px;
+        }
 
-            .sidebar .closebtn {
-                position: absolute;
-                top: 0;
-                right: 25px;
-                font-size: 36px;
-                margin-left: 50px;
-            }
+        .ol-popup-closer:after {
+            content: "✖";
+        }
     </style>
     <div id="mySidebar" class="sidebar" style="height:100%; float:left; width:13%">
         @*지도 사이드 바 메뉴*@
@@ -209,6 +263,11 @@
         <button id="mapmode3" type="button" class="mapBtn btn btn-light" style="position:absolute; margin-top:-100px; margin-left:560px;">항공지도</button>
         <button id="mapmode4" type="button" class="mapBtn btn btn-light" style="position:absolute; margin-top:-100px; margin-left:640px;">하이브리드</button>
     </div>
+    <div id="popup" class="ol-popup">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-content"></div>
+    </div>
+    
 
     <form id="dataForm">
         <input type="hidden" name="key" value="D36C2F4C-D5D4-3214-8304-E094FCA2F56D">
@@ -227,7 +286,34 @@
     </form>
 
     <script type="text/javascript">
+        //import 'ol/ol.css';
+        //import Map from 'ol/Map';
+        //import Overlay from 'ol/Overlay';
+        //import View from 'ol/View';
+        //import { toStringHDMS } from 'ol/coordinate';
+        //import TileLayer from 'ol/layer/Tile';
+        //import { toLonLat } from 'ol/proj';
+        //import TileJSON from 'ol/source/TileJSON';
 
+        var container = document.getElementById('popup');
+        var content = document.getElementById('popup-content');
+        var closer = document.getElementById('popup-closer');
+
+        var overlay = new ol.Overlay({
+            element: container,
+            autoPan: true,
+            autoPanAnimation: {
+                duration: 250
+            }
+        });
+
+        overlay.set("name","GtOverlay")
+
+        closer.onclick = function () {
+            overlay.setPosition(undefined);
+            closer.blur();
+            return false;
+        };
         //지도 생성
         vw.ol3.CameraPosition.center = [14176994.56431106, 4354866.236842043];
         vw.ol3.CameraPosition.zoom = 19;
@@ -238,17 +324,30 @@
             , interactionDensity: vw.ol3.DensityType.BASIC
             , controlsAutoArrange: true
             , homePosition: vw.ol3.CameraPosition
-            , initPosition: vw.ol3.CameraPosition
+            , initPosition: vw.ol3.CameraPosition            
         };
 
         vmap = new vw.ol3.Map("vmap", vw.ol3.MapOptions);
+        var t = new vw.ol3.popup.Popup;
+        
+        
 
+        //vmap.on('click', function (evt) {
+        //    console.log("hello");
+        //    //var coordinate = evt.coordinate;
+        //    //var hdms = toStringHDMS(toLonLat(coordinate));
+
+        //    content.innerHTML = '<p>You clicked here:</p><code>' +'sdf' + '</code>';
+        //    overlay.setPosition(vmap.getView().getCenter());
+        //});
         //맵 내부 스타일 수정
         $('.vw-span').css({ position: "absolute" })
         $('.vw-toolbar').css({ position: "absolute", display: "block", marginLeft: "25px", width: "390px", height: "30px" })
 
         document.getElementById("mySidebar").addEventListener("transitionend", function () { vmap.updateSize() });
-
+        $("#tempbtn").on("click", function () {
+            vmap.addOverlay(overlay);
+        })
         //마커(드론) 추가
         $("#addDron").on("click", function (e) {
 
@@ -309,7 +408,7 @@
         //드론 삭제
         $("#delDron").on("click", function (e) {
             e.preventDefault();
-
+            
             if (dronNum == 0) {
                 alert("드론이 없습니다.");
                 return;
