@@ -1,6 +1,0 @@
-C:\Users\K\Documents\TIL\C#\HelloCSharp\HelloCSharp\bin\Debug\HelloCSharp.exe
-C:\Users\K\Documents\TIL\C#\HelloCSharp\HelloCSharp\bin\Debug\HelloCSharp.pdb
-C:\Users\K\Documents\TIL\C#\HelloCSharp\HelloCSharp\obj\Debug\HelloCSharp.csprojAssemblyReference.cache
-C:\Users\K\Documents\TIL\C#\HelloCSharp\HelloCSharp\obj\Debug\HelloCSharp.csproj.CoreCompileInputs.cache
-C:\Users\K\Documents\TIL\C#\HelloCSharp\HelloCSharp\obj\Debug\HelloCSharp.exe
-C:\Users\K\Documents\TIL\C#\HelloCSharp\HelloCSharp\obj\Debug\HelloCSharp.pdb
