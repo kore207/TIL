@@ -8,7 +8,6 @@
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.95.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.4" />
-    <PackageReference Include="OpenLayers" Version="3.10.1" />
   </ItemGroup>
 
   <ItemGroup>

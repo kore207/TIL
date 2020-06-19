@@ -24,14 +24,13 @@ namespace MiniDron.Controllers
         public const double moveLength = 0.000003;
         public void moveCopr()
         {
-            Console.Write(this.ta);
+            
             if (this.lengCnt == 0)
             {
                 Random rand = new Random();
-                this.direction = rand.Next(0, 7);
+                this.direction = rand.Next(0, 8);
                 this.length = rand.Next(300, 500);
-            }
-
+            }            
             switch (direction)
             {
                 case 0:
@@ -70,6 +69,11 @@ namespace MiniDron.Controllers
                     this.tb -= moveLength;
                     this.lengCnt++;
                     break;
+                case 8://식별 에러 상태
+                    this.ta -= moveLength;
+                    this.tb -= moveLength;
+                    this.lengCnt++;
+                    break;
                 default:
                     break;
             }
@@ -97,11 +101,11 @@ namespace MiniDron.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult DronData()
         {
-            var model = new Contact { };
+            var model = new DronData { };
 
-            return PartialView("_ContactModalPartial", model);
+            return PartialView("_DronDataModalPartial", model);
             
         }
 
@@ -126,30 +130,42 @@ namespace MiniDron.Controllers
                 DP2.moveCopr();
             if (dCnt < 3)
                 DP3.moveCopr();
-            
 
-            var dronInfo = new List<Contact>()
+
+            var dronInfo = new List<DronData>()
             {
-                new Contact(){
+                new DronData(){
                     dronID = "dron 1",
                     regNumber = "1111-1111",
                     dronType = "normal",
                     latitude =  36.3935713 + DP1.ta,
-                    longitude = 127.3542514 + DP1.tb
+                    longitude = 127.3542514 + DP1.tb,
+                    altitude = 113,
+                    speed = 23,
+                    identyDevice = "식별기A",
+                    direction = DP1.direction,                    
                 },
-                new Contact() {
+                new DronData() {
                     dronID = "dron 2",
                     regNumber = "2222-2221",
                     dronType = "normal",
                     latitude = 36.3955713 +DP2.ta ,
-                    longitude = 127.3562514 + DP2.tb
+                    longitude = 127.3562514 + DP2.tb,
+                    altitude = 76,
+                    speed = 24,
+                    identyDevice ="식별기A",
+                    direction = DP2.direction,                    
                 },
-                new Contact() {
+                new DronData() {
                     dronID = "dron3",
                     regNumber = "3333-1313",
                     dronType = "normal",
                     latitude = 36.3955713+ DP3.ta,
-                    longitude = 127.3522514 + DP3.tb
+                    longitude = 127.3522514 + DP3.tb,
+                    altitude = 213,
+                    speed = 22,
+                    identyDevice ="식별기B",
+                    direction = DP3.direction,                    
                 }
             };
 

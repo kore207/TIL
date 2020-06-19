@@ -17,6 +17,10 @@ const dronNumLimit = 5;
 let dronNum = 0;//드론 객체 수
 let dronObject = []; //드론 객체가 담길 배열
 let markerLayer; //마커를 담을 레이어
+let antennaLayer; //식별기담길 레이어
+let controllerLayer; //컨트롤러를 담을 레이어 
+//test
+let antennaFeatures = new Array();
 
 ////마커(드론) 추가
 //$("#addDron").on("click", function (e) {    
@@ -484,7 +488,7 @@ function tempfunc() {
 
     var placeholderElement = $('#modal-placeholder');
 
-    var url = '/Present/Contact';
+    var url = '/Present/DronData';
 
     $.get(url).done(function (data) {
         placeholderElement.html(data);
@@ -512,20 +516,16 @@ function tempfunc() {
 
 $("#tempbtn").on("click", function (e) {
     e.preventDefault();
-    console.log("hellow")
-
-    $.ajax({
-        type: 'GET',
-        url: '/Present/AddDronInfo',
-        success: function (result) {
-            console.log(result.longitude);
-            
-        }
-    })
-
-    
-
 });
+function tempfunc2() {
+  
+        console.log("hellow")
+        //$("#popup").css('width','300px');
+        //$("#popup").css("border", "10px solid #ffffff");
+
+        $("#popup").css("background-color", "rgba(255, 255, 255, 0.2)"); //팝업창 뒤에 가려지는 경우 대비해서 투명도 조절 
+    
+}
 
  //geocoder
 var geocoder_reverse = function (x, y) {
@@ -557,3 +557,5 @@ var geocoder_reverse = function (x, y) {
         error: function (xhr, stat, err) { }
     });
 }
+
+var wgs84Sphere = new ol.Sphere(6378137);
