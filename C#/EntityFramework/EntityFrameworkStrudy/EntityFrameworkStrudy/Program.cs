@@ -39,5 +39,9 @@ namespace EntityFrameworkStrudy
         public int UserId { get; set; }
         public string UserName { get; set; }
         public string Birth { get; set; }
+
+        //다른 테이블 조인하는경우
+        //prop 다른테이블 
+        //추후 사용시 include 메소드를 사용한다.
     }
 }
