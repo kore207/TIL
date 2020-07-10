@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MiniDron</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script type="text/javascript" src="https://map.vworld.kr/js/vworldMapInit.js.do?version=2.0&apiKey=D36C2F4C-D5D4-3214-8304-E094FCA2F56D&domain=localhost:44353"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">소형드론</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse nav-tabs navbar-left">
+                    <ul class="nav" style="float:right;">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @(ViewContext.RouteData.Values["Controller"].ToString() == "Present" ? "active" : "")"
+                               asp-area="" asp-controller="Present" asp-action="PMap">운용 현황</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @(ViewContext.RouteData.Values["Controller"].ToString() == "History" ? "active" : "")"
+                               asp-area="" asp-controller="History" asp-action="HMap">이력 조회</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @(ViewContext.RouteData.Values["Controller"].ToString() == "Statistic" ? "active" : "")"
+                               asp-area="" asp-controller="Statistic" asp-action="StatisticView">통계 조회</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-light bg-light navbar-expand-md">
+            <div class="container-fluid">
+                <div class="navbar-collapse collapse" style="margin-left:60px">
+                    <ul class="nav navbar-nav">
+                        @if (ViewContext.RouteData.Values["Controller"].ToString() == "Present")
+                        {
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="Present" asp-action="PMap" class="nav-link
+                               @(ViewContext.RouteData.Values["Controller"].ToString() + ViewContext.RouteData.Values["Action"].ToString() == "PresentPMap" ? "active" : "")">지도(실시간)  |</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="Present" asp-action="PDronSearch" class="nav-link
+                               @(ViewContext.RouteData.Values["Controller"].ToString() + ViewContext.RouteData.Values["Action"].ToString() == "PresentPDronSearch" ? "active" : "")">드론 조회 |</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="Present" asp-action="AntennaSearch" class="nav-link
+                               @(ViewContext.RouteData.Values["Controller"].ToString() + ViewContext.RouteData.Values["Action"].ToString() == "PresentAntennaSearch" ? "active" : "")">식별기 조회</a>
+                            </li>
+                        }
+                        else if (ViewContext.RouteData.Values["Controller"].ToString() == "History")
+                        {
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="History" asp-action="HMap" class="nav-link
+                               @(ViewContext.RouteData.Values["Controller"].ToString() + ViewContext.RouteData.Values["Action"].ToString() == "HistoryHMap" ? "active" : "")">지도 |</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="History" asp-action="HDronSearch" class="nav-link
+                               @(ViewContext.RouteData.Values["Controller"].ToString() + ViewContext.RouteData.Values["Action"].ToString() == "HistoryHDronSearch" ? "active" : "")">드론 조회 |</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="History" asp-action="FlightViolation" class="nav-link
+                               @(ViewContext.RouteData.Values["Controller"].ToString() + ViewContext.RouteData.Values["Action"].ToString() == "HistoryFlightViolation" ? "active" : "")">비행금지위반</a>
+                            </li>
+                        }
+                        else
+                        {
+                            //none
+                            <h6 class="nav-link">통계 조회</h6>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @*<footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2020 - MiniDron - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>    
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
