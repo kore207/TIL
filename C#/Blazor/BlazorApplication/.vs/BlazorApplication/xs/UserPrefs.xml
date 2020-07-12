@@ -1,0 +1,40 @@
+﻿<Properties StartupConfiguration="여러 프로젝트">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BlazorServer/Program.cs">
+    <Files>
+      <File FileName="BlazorServer/Program.cs" Line="29" Column="1" />
+      <File FileName="BlazorServer/Pages/Counter.razor" Line="19" Column="1" />
+      <File FileName="BlazorServer/Pages/FetchData.razor" Line="1" Column="1" />
+      <File FileName="BlazorServer/Data/WeatherForecast.cs" Line="1" Column="1" />
+      <File FileName="BlazorServer/Data/WeatherForecastService.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BlazorApplication" expanded="True">
+            <Node name="BlazorServer" expanded="True">
+              <Node name="Data" expanded="True" />
+              <Node name="Pages" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+            <Node name="BlazorWebAssembly" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.BlazorServer PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.BlazorWebAssembly PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="여러 프로젝트" Name="여러 프로젝트">
+      <Items>
+        <StartupItem ItemId="{65A134CF-4834-4CDD-A453-4598A50F767D}" ItemName="BlazorServer" ConfigurationId="Default" />
+        <StartupItem ItemId="{8B19071A-A63F-4D3A-B10E-9F7E3A45B4DF}" ItemName="BlazorWebAssembly" ConfigurationId="Default" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+</Properties>

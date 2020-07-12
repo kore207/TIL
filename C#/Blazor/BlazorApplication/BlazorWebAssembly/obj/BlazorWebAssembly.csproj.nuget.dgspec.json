@@ -1,0 +1,81 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/gt/TIL/C#/Blazor/BlazorApplication/BlazorWebAssembly/BlazorWebAssembly.csproj": {}
+  },
+  "projects": {
+    "/Users/gt/TIL/C#/Blazor/BlazorApplication/BlazorWebAssembly/BlazorWebAssembly.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/gt/TIL/C#/Blazor/BlazorApplication/BlazorWebAssembly/BlazorWebAssembly.csproj",
+        "projectName": "BlazorWebAssembly",
+        "projectPath": "/Users/gt/TIL/C#/Blazor/BlazorApplication/BlazorWebAssembly/BlazorWebAssembly.csproj",
+        "packagesPath": "/Users/gt/.nuget/packages/",
+        "outputPath": "/Users/gt/TIL/C#/Blazor/BlazorApplication/BlazorWebAssembly/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/gt/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.Build": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "System.Net.Http.Json": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
