@@ -1,0 +1,264 @@
+﻿@page "/Map"
+
+@using MiniDronIdentifySystem.Service; 
+@using MDIS.api.Model;
+@using Microsoft.JSInterop
+@inject IJSRuntime JSRuntime
+@inject Service.TimerService Timer
+@*@inherits OwningComponentBase<TbFlyingService>*@
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    @*지도 사이드 바 메뉴*@
+    <div id="mySidebar" class="sidebar" style="height:880px; float:right; width:13%; overflow:hidden; overflow-y: scroll; ">
+        <div class="accordion" id="SidebarMap">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            드론 보기 설정
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#Sidebar">
+                    <div class="card-body">
+                        <input type="checkbox" class="form-check-input" id="hide-all-dron" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aisprhc" style="color:black; margin-left:30px; ">드론 전체 감추기</label><br />
+                        <input type="checkbox" class="form-check-input" id="temp" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aisprhc" style="color:black; margin-left:30px; ">미허가</label><br />
+                        <input type="checkbox" class="form-check-input" id="temp" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aisprhc" style="color:black; margin-left:30px; ">미식별</label><br />
+                        <input type="checkbox" class="form-check-input" id="temp" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aisprhc" style="color:black; margin-left:30px; ">식별ID유효성 이상</label><br />
+                        <input type="checkbox" class="form-check-input" id="showFlyViolation" style="margin-left:10px;">
+                        <label class="form-check-label" for="showFlyViolation" style="color:black; margin-left:30px; ">비행금지 위반 드론만 보기</label><br />
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            식별기 보기 설정
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#Sidebar">
+                    <div class="card-body">
+                        <input type="checkbox" class="form-check-input" id="hide-all-antenna" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aisprhc" style="color:black; margin-left:30px; ">식별기 전체 감추기</label><br />
+                        <input type="checkbox" class="form-check-input" id="temp" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aisprhc" style="color:black; margin-left:30px; ">상태 이상</label><br />
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            비행금지구역 보기 설정
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#Sidebar">
+                    <div class="card-body">
+                        <input type="checkbox" class="form-check-input" id="lt_c_aisctrc" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aisctrc" style="color:forestgreen; margin-left:30px;"> 관제권</label><br />
+                        <input type="checkbox" class="form-check-input" id="lt_c_aisatzc" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aisatzc" style="color:forestgreen; margin-left:30px;"> 비행장 교통구역</label><br />
+                        <input type="checkbox" class="form-check-input" id="lt_c_aisfirc" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aisfirc" style="color:orange; margin-left:30px;">정보 구역</label><br />
+                        <input type="checkbox" class="form-check-input" id="lt_c_aisprhc" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aisprhc" style="color:red; margin-left:30px;">비행금지구역</label><br />
+                        <input type="checkbox" class="form-check-input" id="lt_c_aisresc" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aisresc" style="color:red; margin-left:30px;"> 비행제한구역</label><br />
+                        <input type="checkbox" class="form-check-input" id="lt_c_aisuac" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aisuac" style="color:red; margin-left:30px;"> 초경량 비행장치 비행제한 구역</label><br />
+                        <input type="checkbox" class="form-check-input" id="lt_c_aiscatc" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aiscatc" style="color:purple; margin-left:30px;"> 훈련구역    25kg↑</label><br />
+                        <input type="checkbox" class="form-check-input" id="lt_c_aismoac" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aismoac" style="color:purple; margin-left:30px;"> 군작전구역    25kg↑</label><br />
+                        <input type="checkbox" class="form-check-input" id="lt_c_aisdngc" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aisdngc" style="color:purple; margin-left:30px;"> 위험구역    25kg↑</label><br />
+                        <input type="checkbox" class="form-check-input" id="lt_c_aisaltc" style="margin-left:10px;">
+                        <label class="form-check-label" for="lt_c_aisaltc" style="color:purple; margin-left:30px;"> 경계구역</label><br />
+                        <input type="checkbox" class="form-check-input" checked id="customLayerCheck" style="margin-left:10px;">
+                        <label class="form-check-label" for="customLayerCheck" style="color:blueviolet; margin-left:30px;"> 사용자 설정 구역</label>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingFour">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                보기 설정
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#Sidebar">
+                        <div class="card-body">
+                            <input type="checkbox" class="form-check-input" id="adsigg" style="margin-left:10px;">
+                            <label class="form-check-label" for="adsigg" style="color:black; margin-left:30px;">시군구 경계</label><br />
+                            <input type="checkbox" class="form-check-input" id="ademd" style="margin-left:10px;">
+                            <label class="form-check-label" for="ademd" style="color:black; margin-left:30px;">읍면동 경계</label><br />
+                            <input type="checkbox" class="form-check-input" id="temp" style="margin-left:10px;">
+                            <label class="form-check-label" for="lt_c_aisprhc" style="color:black; margin-left:30px;">드론 방향</label><br />
+                            <input type="checkbox" class="form-check-input" id="temp" style="margin-left:10px;">
+                            <label class="form-check-label" for="lt_c_aisprhc" style="color:black; margin-left:30px; ">드론 경로</label><br />
+                            <input type="checkbox" class="form-check-input" checked id="show-selected-dronController" style="margin-left:10px;">
+                            <label class="form-check-label" for="lt_c_aisprhc" style="color:black; margin-left:30px; ">선택드론 조종기 보기</label><br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* 임시 버튼 영역(사이드바에 포함) *@
+        <div class="buttons">
+            <button id="position" type="button" class="btn btn-light btn-lg btn-block">  내 위치 </button>
+            <button id="addAntenna" type="button" class="btn btn-light btn-lg btn-block"> 식별기 추가</button>
+            <button id="addDron" type="button" class="btn btn-light btn-lg btn-block"> 드론 추가 </button>
+            <button id="delDron" type="button" class="btn btn-light btn-lg btn-block"> 드론 제거 </button>
+            <button id="createPolygon" type="button" class="btn btn-light btn-block btn-lg">제한구역 설정</button>
+            <button id="tempbtn" type="button" class="btn btn-light btn-lg btn-block"> 임시 버튼 </button>
+
+        </div>
+    </div>
+
+    @* 지도 들어갈 영역 *@
+    <div id="vmap" style="position:relative; height:881px; float:left; width:87%; transition: 0.5s; ">
+        <div style="height:38px;">
+            <form id="searchForm" action="#" class="form_data" onsubmit="return false;search();">
+
+                <input type="hidden" id="sido_key" value="0fabd7c63b9f0bb661cae2" />@*12685d425f1af0872d756c*@
+                <input type="hidden" id="sigoon_key" value="46d9fe0c389605a3a36db6" /> @*b0888bae39fbd0463a9252*@
+                <input type="hidden" id="dong_key" value="a866ed9828882807bc7e9b" />@*91afccaa8d7f499151ee3b*@
+                <input type="hidden" name="apiKey" value="D36C2F4C-D5D4-3214-8304-E094FCA2F56D" />
+                <span style="padding-left:20px; padding-right:10px;">지역</span>
+                <select id="sido_code" style="height:37px;">
+                    <option>광역시도</option>
+                </select>
+                <select id="sigoon_code" style="height:37px;">
+                    <option>시군구</option>
+                </select>
+                <select id="dong_code" style="height:37px;">
+                    <option>읍면동</option>
+                </select>
+                <button class="btn-primary" onclick="toggleNav()" style="float:right; width:37px; height:39px;">☰</button>
+            </form>
+        </div>
+    </div>
+
+    @* 팝업 관련 *@
+<div id="popup" class="ol-popup">
+    <a href="javascript:void(0)" id="popup-positionChange" class="ol-popup-positionChange"></a> @* href="#" 은 페이지 새로고침 된다. *@
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>    
+</div>
+    
+
+    <form id="dataForm">
+        <input type="hidden" name="key" value="D36C2F4C-D5D4-3214-8304-E094FCA2F56D">
+        <input type="hidden" name="domain" value="http://localhost:8080">
+        <input type="hidden" name="service" value="data">
+        <input type="hidden" name="version" value="2.0">
+        <input type="hidden" name="request" value="getfeature">
+        <input type="hidden" name="format" value="json">
+        <input type="hidden" name="size" value="10">
+        <input type="hidden" name="page" value="1">
+        <!-- <input type="hidden" name="data" value="LT_C_ADSIDO_INFO"> -->
+        <input type="hidden" name="data" value="LT_C_ADEMD_INFO">
+        <input type="hidden" name="geometry" value="true">
+        <input type="hidden" name="attribute" value="true">
+        <input type="hidden" name="crs" value="EPSG:900913">
+    </form>
+
+    <form id="aisDataForm">
+        @* AIS = 항공 정보 서비스 *@
+        <input type="hidden" name="domain" value="https://127.0.0.1">
+        <input type="hidden" name="service" value="WFS">
+        <input type="hidden" name="version" value="1.1.0">
+        <input type="hidden" name="request" value="GetFeature">
+        <input type="hidden" name="key" value="D36C2F4C-D5D4-3214-8304-E094FCA2F56D">
+        <input type="hidden" name="output" value="text/javascript">
+        <input type="hidden" name="typename" value=""> @*type 과 bbox는 변수*@
+        <input type="hidden" name="bbox" value="">
+        <input type="hidden" name="srsname" value="EPSG:900913"> @*4326 *@
+    </form>
+</body>
+</html>
+
+@code {
+    [Inject]
+    public IDronService DronService { get; set; }
+
+    public IEnumerable<TbDrone> Drones { get; set; }
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    Drones = (await DronService.GetTbDrones()).ToList();
+    //    await StartTimer();
+    //}
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeAsync<object>("createVworldMap");
+        }
+
+        await StartTimer();
+
+    }
+
+    private async Task StartTimer()
+    {
+        Timer.SetTimer(1000);
+        Timer.OnElapsed +=
+            async delegate
+            {
+                await TimerElapsedHandler();
+            };
+    }
+
+    //List<TbFlying> flyingInfo;
+    //List<FlyingInfoJoinDronInfo> flyingDronInfo;
+
+    private async Task TimerElapsedHandler()
+    {
+        //DB 조회 할 곳      
+        //var dronID = "TestDron_MID";
+        //flyingInfo = await Service.GetTbFlyings(dronID);
+
+        //flyingInfo = await Service.GetAll();
+        //if (flyingInfo != null)
+        //{
+        //    await JSRuntime.InvokeAsync<object>("IImportantSource", flyingInfo);
+        //}
+        //flyingDronInfo = await Service.GetJoinDronTB();
+        //if (flyingDronInfo != null)
+        //{
+        //    await JSRuntime.InvokeAsync<object>("showDronInfo", flyingDronInfo);
+        //}
+
+        Drones = (await DronService.GetTbDrones()).ToList();
+
+        await JSRuntime.InvokeAsync<object>("showDronInfo", Drones);
+
+    }
+
+    //로드될떄 같이 시작 
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    var dronID = "TestDron_MID";
+    //    flyingInfo = await Service.GetTbFlyings(dronID);
+    //}
+    public void temp()
+    {
+        Console.WriteLine("real");
+    }
+        
+}
