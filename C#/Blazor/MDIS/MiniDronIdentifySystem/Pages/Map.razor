@@ -8,11 +8,12 @@
 @*@inherits OwningComponentBase<TbFlyingService>*@
 
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
 </head>
-<body>
+<body>    
     @*지도 사이드 바 메뉴*@
     <div id="mySidebar" class="sidebar" style="height:880px; float:right; width:13%; overflow:hidden; overflow-y: scroll; ">
         <div class="accordion" id="SidebarMap">
@@ -188,9 +189,10 @@
         <input type="hidden" name="bbox" value="">
         <input type="hidden" name="srsname" value="EPSG:900913"> @*4326 *@
     </form>
-</body>
-</html>
 
+  </body>
+</html>
+ 
 @code {
     [Inject]
     public IDronService DronService { get; set; }
@@ -248,6 +250,7 @@
 
         await JSRuntime.InvokeAsync<object>("showDronInfo", Drones);
 
+    
     }
 
     //로드될떄 같이 시작 
@@ -260,5 +263,23 @@
     {
         Console.WriteLine("real");
     }
-        
+
+    [CascadingParameter] public IModalService Modal { get; set; }
+
+
+    
+    void ShowModal() {
+        Modal.Show<InfoWindow>("Welcome to Blazored Modal");                                
+    }
+
+    [JSInvokable]//.js 에서 c# 메소드 콜할때 사용 
+    public static void ReturnArrayAsync()
+    {
+        Console.WriteLine("i'm blazor");
+    }
+    //public static Task<int[]> ReturnArrayAsync()
+    //{
+    //    return Task.FromResult(new int[] { 1, 2, 3 });
+    //}
+
 }

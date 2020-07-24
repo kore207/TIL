@@ -2,6 +2,41 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "Blazored.Modal/5.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.6",
+          "Microsoft.AspNetCore.Components.Web": "3.1.6",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.6",
+          "Microsoft.JSInterop.WebAssembly": "3.2.1"
+        },
+        "compile": {
+          "lib/netstandard2.1/Blazored.Modal.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Blazored.Modal.dll": {}
+        },
+        "build": {
+          "buildTransitive/Blazored.Modal.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Blazored.Modal.props": {}
+        }
+      },
+      "Microsoft.AspNetCore.Authorization/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Metadata": "3.1.6",
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.6",
+          "Microsoft.Extensions.Options": "3.1.6"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authorization.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authorization.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Blazor.HttpClient/3.2.0-preview3.20168.3": {
         "type": "package",
         "dependencies": {
@@ -12,6 +47,53 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Blazor.HttpClient.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "3.1.6",
+          "Microsoft.AspNetCore.Components.Analyzers": "3.1.6",
+          "Microsoft.JSInterop": "3.1.6"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Components.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Components.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.Analyzers/3.1.6": {
+        "type": "package",
+        "build": {
+          "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.Forms/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.6"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Components.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Components.Forms.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.Web/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.6",
+          "Microsoft.AspNetCore.Components.Forms": "3.1.6",
+          "Microsoft.Extensions.DependencyInjection": "3.1.6",
+          "Microsoft.JSInterop": "3.1.6"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Components.Web.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Components.Web.dll": {}
         }
       },
       "Microsoft.AspNetCore.JsonPatch/3.1.6": {
@@ -25,6 +107,15 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Metadata/3.1.6": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Metadata.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Metadata.dll": {}
         }
       },
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson/3.1.6": {
@@ -310,6 +401,27 @@
         },
         "runtime": {
           "lib/netcoreapp2.1/Microsoft.Identity.Client.dll": {}
+        }
+      },
+      "Microsoft.JSInterop/3.1.6": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.JSInterop.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.JSInterop.dll": {}
+        }
+      },
+      "Microsoft.JSInterop.WebAssembly/3.2.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.JSInterop": "3.1.6"
+        },
+        "compile": {
+          "lib/netstandard2.1/Microsoft.JSInterop.WebAssembly.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.JSInterop.WebAssembly.dll": {}
         }
       },
       "Microsoft.NETCore.Platforms/2.0.0": {
@@ -1346,6 +1458,42 @@
     }
   },
   "libraries": {
+    "Blazored.Modal/5.0.2": {
+      "sha512": "qfAHOUY3OIhLUxtdsBOtnDXHCedXN6Q27MTJrHB5ArzIkDizpL9qvVLXufM0EEht7ow4eaj9SwNNhhV1CikLzw==",
+      "type": "package",
+      "path": "blazored.modal/5.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazored.modal.5.0.2.nupkg.sha512",
+        "blazored.modal.nuspec",
+        "build/Blazored.Modal.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/Blazored.Modal.props",
+        "buildTransitive/Blazored.Modal.props",
+        "icon.png",
+        "lib/netstandard2.1/Blazored.Modal.dll",
+        "staticwebassets/blazored-modal.css",
+        "staticwebassets/blazored.modal.js"
+      ]
+    },
+    "Microsoft.AspNetCore.Authorization/3.1.6": {
+      "sha512": "n0EC0W8jRpM2o1sKKYQpFuvE1sgW7juyEbhVZPcHy9VnHyZYvcIBHVJ6aPCtwqf/16KyqIB1XDVjPnPgyui47Q==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authorization/3.1.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Authorization.dll",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Authorization.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.xml",
+        "microsoft.aspnetcore.authorization.3.1.6.nupkg.sha512",
+        "microsoft.aspnetcore.authorization.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.Blazor.HttpClient/3.2.0-preview3.20168.3": {
       "sha512": "6J1vBdhSnGW53BQsKeIjI8algTQdW8+Dnx/R9eZ/ldhtY8mx2KXOSkEVr7Tb0xwg5OM5+rHZS+PuzIv1nuvDCg==",
       "type": "package",
@@ -1358,6 +1506,73 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.Blazor.HttpClient.dll",
         "microsoft.aspnetcore.blazor.httpclient.3.2.0-preview3.20168.3.nupkg.sha512",
         "microsoft.aspnetcore.blazor.httpclient.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components/3.1.6": {
+      "sha512": "mNBFDx5rbm5IHpMymGuDo9iGf9L4JWwE0Ho4wXQOdJRKhk7DhuebbIgWFcshsEmDqZPuaX1B4PkifJNDq/3KCw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components/3.1.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Components.dll",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Components.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Components.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Components.xml",
+        "microsoft.aspnetcore.components.3.1.6.nupkg.sha512",
+        "microsoft.aspnetcore.components.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Analyzers/3.1.6": {
+      "sha512": "uX+Dl3uPqlGmKBmQRn9QKfx0cgXXyfr9JF8aaBKgi+mexwyGEYFTMXleb9AHK9aofwwMivwfUHi/OmxgcB4YYw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.analyzers/3.1.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "analyzers/dotnet/cs/Microsoft.AspNetCore.Components.Analyzers.dll",
+        "build/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
+        "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
+        "microsoft.aspnetcore.components.analyzers.3.1.6.nupkg.sha512",
+        "microsoft.aspnetcore.components.analyzers.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Forms/3.1.6": {
+      "sha512": "ypqYTvv478N19dRTXsELjluHyW+/aASauBdLvVL4zbmA5BMMdQy69LKTcXXfgqhzC1N/KYusPoMPCasD1F7Fwg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.forms/3.1.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Components.Forms.dll",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Components.Forms.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Components.Forms.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Components.Forms.xml",
+        "microsoft.aspnetcore.components.forms.3.1.6.nupkg.sha512",
+        "microsoft.aspnetcore.components.forms.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Web/3.1.6": {
+      "sha512": "u6xnpxIHf20aiJ+B2iyZKzsisc2aMkKV2JI/wRWov0M/6FLqLwtOsjRidtOAd5g3eJLYxE6fxOOC8KQqbYNjog==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.web/3.1.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Components.Web.dll",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Components.Web.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Components.Web.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Components.Web.xml",
+        "microsoft.aspnetcore.components.web.3.1.6.nupkg.sha512",
+        "microsoft.aspnetcore.components.web.nuspec"
       ]
     },
     "Microsoft.AspNetCore.JsonPatch/3.1.6": {
@@ -1373,6 +1588,23 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.xml",
         "microsoft.aspnetcore.jsonpatch.3.1.6.nupkg.sha512",
         "microsoft.aspnetcore.jsonpatch.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Metadata/3.1.6": {
+      "sha512": "CPD6ukxTPpvtm5GfAlgRbUPF7D+eo8K7rMVgL/kLrz4aTT6gb/c0uet2ISRIO615zIS2N52ZZwLcX9hmeQhVGg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.metadata/3.1.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Metadata.dll",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Metadata.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.xml",
+        "microsoft.aspnetcore.metadata.3.1.6.nupkg.sha512",
+        "microsoft.aspnetcore.metadata.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Mvc.NewtonsoftJson/3.1.6": {
@@ -1838,6 +2070,37 @@
         "ref/uap10.0/Microsoft.Identity.Client.xml",
         "ref/xamarinmac20/Microsoft.Identity.Client.dll",
         "ref/xamarinmac20/Microsoft.Identity.Client.xml"
+      ]
+    },
+    "Microsoft.JSInterop/3.1.6": {
+      "sha512": "k/AaZDugrwLO4gkLrPkFiWIzjC0BxPGF2yds6P6PYXNG4Jw/od3UZJrVSRLakQPDsnXLMDiyg7uGWtDI17FtSQ==",
+      "type": "package",
+      "path": "microsoft.jsinterop/3.1.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/netcoreapp3.1/Microsoft.JSInterop.dll",
+        "lib/netcoreapp3.1/Microsoft.JSInterop.xml",
+        "lib/netstandard2.0/Microsoft.JSInterop.dll",
+        "lib/netstandard2.0/Microsoft.JSInterop.xml",
+        "microsoft.jsinterop.3.1.6.nupkg.sha512",
+        "microsoft.jsinterop.nuspec"
+      ]
+    },
+    "Microsoft.JSInterop.WebAssembly/3.2.1": {
+      "sha512": "wYKx4YeBTnv1bzKZtdsWH0O9OmmYm7zq56QkKCUdl1hDg4Gn0lmCDfYBC0r1k5/Wh64IveuWwpkyTWjqCmp4pg==",
+      "type": "package",
+      "path": "microsoft.jsinterop.webassembly/3.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/netstandard2.1/Microsoft.JSInterop.WebAssembly.dll",
+        "lib/netstandard2.1/Microsoft.JSInterop.WebAssembly.xml",
+        "microsoft.jsinterop.webassembly.3.2.1.nupkg.sha512",
+        "microsoft.jsinterop.webassembly.nuspec"
       ]
     },
     "Microsoft.NETCore.Platforms/2.0.0": {
@@ -5097,6 +5360,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Blazored.Modal >= 5.0.2",
       "MDIS.api >= 1.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.6"
     ]
@@ -5146,6 +5410,10 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "Blazored.Modal": {
+            "target": "Package",
+            "version": "[5.0.2, )"
+          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[3.1.6, )"

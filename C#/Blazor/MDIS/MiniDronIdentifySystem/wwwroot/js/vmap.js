@@ -642,9 +642,9 @@ function showDronInfo(DBdata) {
                 addDron(DBdata[dbIdx]);                
             }
         }
-        else {
-            console.log("Dron total count is not change!");
-        }
+        //else {
+        //    console.log("Dron total count is not change!");
+        //}
     }
 
     //$.ajax({

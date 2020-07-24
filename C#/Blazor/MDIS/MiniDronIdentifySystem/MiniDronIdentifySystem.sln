@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniDronIdentifySystem", "MiniDronIdentifySystem.csproj", "{70BCD346-2B0B-45F9-8105-F44F906C59B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDIS.api", "..\MDIS.api\MDIS.api.csproj", "{34ECC8C2-101D-47EE-9C8A-E735C2EEF1E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDIS.api", "..\MDIS.api\MDIS.api.csproj", "{34ECC8C2-101D-47EE-9C8A-E735C2EEF1E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

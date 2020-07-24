@@ -117,6 +117,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Blazored.Modal": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.1.6, )"

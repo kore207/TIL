@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Blazored.Modal;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +34,8 @@ namespace MiniDronIdentifySystem
             //services.AddSingleton<WeatherForecastService>();
             //services.AddScoped<WeatherForecastService>();
             //services.AddScoped<TbFlyingService>();            
+            
+
             services.AddTransient<Service.TimerService>();
 
             services.AddHttpClient<IDronService, DronService>(client =>
@@ -41,9 +44,8 @@ namespace MiniDronIdentifySystem
             });
             //services.AddDbContext<MiniDronIdentifySystem.Data.MDISDBContext>(options =>
             //options.UseSqlServer(
-            //    Configuration.GetConnectionString("DefaultConnection")));
- 
-
+            //    Configuration.GetConnectionString("DefaultConnection")));            
+            services.AddBlazoredModal(); //모달 window 를 위한 서비스 추가 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

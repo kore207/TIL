@@ -72,6 +72,20 @@ using MiniDronIdentifySystem.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\Users\CEO\Desktop\MDIS\MiniDronIdentifySystem\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\CEO\Desktop\MDIS\MiniDronIdentifySystem\_Imports.razor"
+using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/counter")]
     public partial class Counter : Microsoft.AspNetCore.Components.ComponentBase
     {

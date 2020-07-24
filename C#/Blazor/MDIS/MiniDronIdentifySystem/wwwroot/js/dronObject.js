@@ -4,7 +4,7 @@ class Dron {
     //.dronE_MID data.latitude, data.longitude
     constructor(receiveData, honer, phone, insurance, time, StartIdTime) {
         //this.dnum = dnum;
-        this.dronID = receiveData.droneMid;
+        this.dronID = receiveData.droneMid; // dron MID
         //this.name = receiveData.dronE_MID;
         this.latitude = receiveData.latitude;
         this.longitude = receiveData.longitude;
@@ -38,7 +38,7 @@ class Dron {
             addDronMarker(this);
 
             //타이머 시작             
-            //this.startTimer(this);
+            this.startTimer(this);
 
             //createRouteLayer(this);
 
@@ -71,7 +71,8 @@ class Dron {
     startTimer(dronObject) {
         let _this = dronObject;
 
-        _this.time++;
+        //_this.time++;
+        _this.time += 10;
 
         if (_this.running == 1) {
             setTimeout(function () {
@@ -80,7 +81,7 @@ class Dron {
 
                 _this.startTimer(_this);
 
-            }, 100)
+            }, 1000)
         }
     }
 }
@@ -164,10 +165,12 @@ function dronDataAjax(dronObject) {
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:56728/api/drones',//'/Present/AddDronInfo/' + (tempDronID) % 3, //추후엔 식별기 아이디를 입력하게 될지 검토 
+        url: "http://localhost:56728/api/drones/" + _this.dronID, //드론의 정보 요청
+        //url: 'http://localhost:56728/api/drones',//'/Present/AddDronInfo/' + (tempDronID) % 3, //추후엔 식별기 아이디를 입력하게 될지 검토 
         success: function (result) {
-            receiveData = result;
-            let oriCoord = [_this.longitude + receiveData[tempDronID % 3].longitude, _this.latitude + receiveData[tempDronID % 3].latitude];
+            receiveData = result;            
+            //let oriCoord = [_this.longitude + receiveData[tempDronID % 3].longitude, _this.latitude + receiveData[tempDronID % 3].latitude];
+            let oriCoord = [receiveData.longitude, receiveData.latitude];
 
             //받은 좌표계가 다른경우 변환 한다. 
             _this.transLatLon = ol.proj.transform(oriCoord, "EPSG:4326", "EPSG:900913")
@@ -181,29 +184,29 @@ function dronDataAjax(dronObject) {
                 }
             }
 
-            //경로 관련 시작//
-            //식별/미식별 구분하지 않는 경우 
-            if (_this.time > 70) { //경로 표시 시간제한 두기 (7초))
-                dronRouteLayer.getSource().getFeatures().filter(a => a.get('id') == _this.dronID + 'DronRoute-' + _this.routeFeatureCnt).pop().getGeometry().flatCoordinates.shift(); // 위도 경도를 빼기 때문에 2번 해줌 
-                dronRouteLayer.getSource().getFeatures().filter(a => a.get('id') == _this.dronID + 'DronRoute-' + _this.routeFeatureCnt).pop().getGeometry().flatCoordinates.shift(); //shift 는 오래걸리는 연산이므로 다른 방법도 생각해보기...            
-            }
-            drawRouteOnlyLine(_this)
+            ////경로 관련 시작//
+            ////식별/미식별 구분하지 않는 경우 
+            //if (_this.time > 70) { //경로 표시 시간제한 두기 (7초))
+            //    dronRouteLayer.getSource().getFeatures().filter(a => a.get('id') == _this.dronID + 'DronRoute-' + _this.routeFeatureCnt).pop().getGeometry().flatCoordinates.shift(); // 위도 경도를 빼기 때문에 2번 해줌 
+            //    dronRouteLayer.getSource().getFeatures().filter(a => a.get('id') == _this.dronID + 'DronRoute-' + _this.routeFeatureCnt).pop().getGeometry().flatCoordinates.shift(); //shift 는 오래걸리는 연산이므로 다른 방법도 생각해보기...            
+            //}
+            //drawRouteOnlyLine(_this)
 
-            //식별(선) / 미식별(미식별) 구분하는 경우: feature가 구분되기때문에 경로 표시 시간제한이 까다롭다.
-            //drawRouteLineNDash(receiveData, _this)            
-            //경로 관련 끝//
+            ////식별(선) / 미식별(미식별) 구분하는 경우: feature가 구분되기때문에 경로 표시 시간제한이 까다롭다.
+            ////drawRouteLineNDash(receiveData, _this)            
+            ////경로 관련 끝//
 
-            // 선택드론 - 조종기 연결
-            if ($('#show-selected-dronController').is(':checked') && (_this.prevState != 8))
-                drawControllerDronLine(_this);
+            //// 선택드론 - 조종기 연결
+            //if ($('#show-selected-dronController').is(':checked') && (_this.prevState != 8))
+            //    drawControllerDronLine(_this);
 
             //클릭시 생성되는 팝업내용 업데이트 
             if (document.getElementById("popup-open") && (_this.prevState != 8))
                 popupContentsUpdate(_this, receiveData);
 
-            if (_this.transLatLon[0] != null && _this.transLatLon[1] != null && _this.prevState != 8) {
-                dronFeatures.getGeometry().setCoordinates(_this.transLatLon);
-            }
+            //if (_this.transLatLon[0] != null && _this.transLatLon[1] != null && _this.prevState != 8) {
+            //    dronFeatures.getGeometry().setCoordinates(_this.transLatLon);
+            //}
         }
     })
 
@@ -264,18 +267,18 @@ function popupContentsUpdate(dronObject, receiveData) {
 
         vmap.getOverlays().getArray()[0].values_.position = _this.transLatLon;//팝업창 위치 드론 따라가도록
 
-        document.getElementById("dAltitude").innerHTML = receiveData[tempDronID % 3].altitude + 'm'
-        document.getElementById("dSpeed").innerHTML = receiveData[tempDronID % 3].speed + 'km/h';
-        document.getElementById("dIdentyDevice").innerHTML = receiveData[tempDronID % 3].identyDevice;
-        document.getElementById("dDirection").innerHTML = receiveData[tempDronID % 3].direction;
-        let lat = _this.latitude + receiveData[tempDronID % 3].latitude;
-        let lng = _this.longitude + receiveData[tempDronID % 3].longitude;
+        document.getElementById("dAltitude").innerHTML = receiveData.altitude + 'm'
+        document.getElementById("dSpeed").innerHTML = receiveData.speed + 'km/h';
+        //document.getElementById("dIdentyDevice").innerHTML = receiveData[tempDronID % 3].identyDevice;
+        document.getElementById("dDirection").innerHTML = receiveData.direction;
+        let lat = receiveData.latitude;
+        let lng = receiveData.longitude;
         document.getElementById("dLatLon").innerHTML = lat.toFixed(5) + '/' + lng.toFixed(5); //위경도 자릿수 제한 
 
-        //드론 - 조종기 거리 계산         
-        let pointsLine = new ol.geom.LineString([_this.transLatLon, _this.controllerCoorp]);
+        ////드론 - 조종기 거리 계산         
+        //let pointsLine = new ol.geom.LineString([_this.transLatLon, _this.controllerCoorp]);
 
-        document.getElementById("dronToConLength").innerHTML = formatLength(pointsLine);
+        //document.getElementById("dronToConLength").innerHTML = formatLength(pointsLine);
 
         //좌표 -> 주소 변환 하기위한 ajax 통신 
         $.ajax({
@@ -524,6 +527,16 @@ let roadDronInfomation = function () {
     //        console.log(xhr, stat, err, "roadDronInfo ajax error");
     //    }
     //});
- 
+    callBlazorFunctions.returnArrayAsyncJs();
+    
 }
 
+window.callBlazorFunctions = { //vmap에서 생성된 버튼 클릭스 c# 메소드 호출하기 위한 함수 
+    returnArrayAsyncJs: function () {
+        DotNet.invokeMethodAsync('MiniDronIdentifySystem', 'ShowModal');
+            //.then(data => {
+            //    data.push(4);
+            //    console.log(data);
+            //});
+    }
+}
