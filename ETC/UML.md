@@ -6,7 +6,7 @@
 
 > 클래스들이 개념상 서로 연결됨. 간단하게 생각하자면, 한 클래스가 다른 클래스에서 제공하는 기능을 사용하는 상황
 
-![image-20201014132000361](C:\Users\CEO\Desktop\Git_repo\ETC\cd1.png)
+![image-1](https://github.com/kore207/TIL/blob/master/ETC/cd1.png)
 
 #### 2. 일반화 관계
 
