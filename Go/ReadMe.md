@@ -89,22 +89,24 @@
 * ```go
   //if , else
   func canIDrint(age int) bool{
-      if age < 18 {
+      if age < 18 { //if 문의 조건식은 반드시 Boolean 식이여야 한
           return false
       } else {
           return true
       }  
   
+      //Optional Statement (Switch, for 문 등 여러 문법에서 사용 가능)
       //if문 안에서 변수 생성 (variable expression)
       if koreanAge:=age +2; koreanAge<18{
           return false
       }
   }
-  
   ```
 
 * ```go
   func canIDrint(age int) bool{
+      //Go에서는 별도의 break 가 없어도 다음 case로 넘어가지 않는다.
+      //fallthrough 명령문을 쓰면 넘어간
       switch age{
       case age < 10:
           return false
@@ -127,6 +129,11 @@
         b := &a
         *b = 20
         fmt.Println(a) //20
+    }
+    
+    func temp(d string) *data {
+        ...
+        retrun &d 
     }
     ```
 
@@ -161,12 +168,18 @@
         age int
         favFood []string
     }
+    ```
     
     
-    func main(){
+    
+    ```go
+    func main() {
         favFood:=[]string{"kimchi","ramen"}
         gt := person{"gt",18,favFood}
         //아래와 같이 만드는게 더 명확하다.  
         gt := person{name:"gt",age:18,favFood:favFood}
+        //이렇게도 가능
+        gt2 := new(person) //zero value 로 초기화 된    
     }
+    
     ```
